@@ -40,3 +40,5 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+backend/car_data_clean.csv
+backend/car_price_rf_model.pkl
