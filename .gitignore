@@ -44,3 +44,5 @@ Thumbs.db
 # Archivos grandes que queremos ignorar y usar con LFS
 /backend/car_data_clean.csv
 /backend/car_price_rf_model.pkl
+backend/car_data_clean.csv
+backend/car_price_rf_model.pkl
