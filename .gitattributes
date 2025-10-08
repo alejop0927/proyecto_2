@@ -1,0 +1,2 @@
+backend/car_data_clean.csv filter=lfs diff=lfs merge=lfs -text
+backend/car_price_rf_model.pkl filter=lfs diff=lfs merge=lfs -text
