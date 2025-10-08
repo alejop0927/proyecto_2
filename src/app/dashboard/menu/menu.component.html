@@ -1,0 +1,66 @@
+<aside class="bg-gray-900 text-white w-64 min-h-screen flex flex-col shadow-xl border-r border-gray-800">
+  <!-- Logo -->
+  <div class="p-6 font-bold text-yellow-400 text-3xl border-b border-gray-800 flex items-center justify-center tracking-wide">
+    EasyDrive
+  </div>
+
+  <!-- Navegación -->
+  <nav class="flex-1 mt-6 px-4 space-y-3">
+    <a routerLink="/catalogo-mejorado"
+       class="block w-full px-4 py-3 rounded-xl bg-gray-800 hover:bg-gray-700 text-white font-semibold text-lg shadow-sm transition-all duration-200">
+      🚗 Catálogo
+    </a>
+
+    <a routerLink="/favoritos"
+       class="block w-full px-4 py-3 rounded-xl bg-gray-800 hover:bg-gray-700 text-white font-semibold text-lg shadow-sm transition-all duration-200">
+      ❤️ Mis Favoritos
+    </a>
+
+    <a routerLink="/carrito"
+       class="block w-full px-4 py-3 rounded-xl bg-gray-800 hover:bg-gray-700 text-white font-semibold text-lg shadow-sm transition-all duration-200">
+      🛒 Mi Carrito
+    </a>
+
+    <!-- 🔹 Nuevo botón visible para todos -->
+    <a routerLink="/financiacion"
+       class="block w-full px-4 py-3 rounded-xl bg-gray-800 hover:bg-gray-700 text-white font-semibold text-lg shadow-sm transition-all duration-200">
+      💵 Simulador de Financiación
+    </a>
+
+    <!-- Opciones solo para admin -->
+    <ng-container *ngIf="user?.rol === 'admin'">
+      <a routerLink="/autos/nuevo"
+         class="block w-full px-4 py-3 rounded-xl bg-yellow-700 hover:bg-yellow-600 text-black font-semibold text-lg shadow-sm transition-all duration-200">
+        ➕ Agregar Auto
+      </a>
+
+      <a routerLink="/ventas/registrar"
+         class="block w-full px-4 py-3 rounded-xl bg-yellow-700 hover:bg-yellow-600 text-black font-semibold text-lg shadow-sm transition-all duration-200">
+        💰 Registrar Venta
+      </a>
+
+      <a routerLink="/autos/lista"
+         class="block w-full px-4 py-3 rounded-xl bg-yellow-700 hover:bg-yellow-600 text-black font-semibold text-lg shadow-sm transition-all duration-200">
+        📋 Lista de Autos
+      </a>
+
+      <a routerLink="/gestionar-usuarios"
+         class="block w-full px-4 py-3 rounded-xl bg-purple-700 hover:bg-purple-600 text-white font-semibold text-lg shadow-sm transition-all duration-200">
+        👥 Gestionar Usuarios
+      </a>
+    </ng-container>
+  </nav>
+
+  <!-- Footer usuario -->
+  <div class="p-4 border-t border-gray-800 text-sm flex flex-col space-y-3 bg-gray-800 mt-auto">
+    <div *ngIf="user" class="text-gray-300">
+      <span class="font-bold">{{ user.nombre }}</span>
+      <span class="italic text-yellow-400">({{ user.rol }})</span>
+    </div>
+    <button *ngIf="user"
+            (click)="logout()"
+            class="w-full py-2 px-3 rounded-lg bg-red-600 hover:bg-red-700 text-white font-semibold shadow-sm transition-all">
+      Cerrar Sesión
+    </button>
+  </div>
+</aside>

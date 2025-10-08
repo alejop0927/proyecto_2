@@ -1,0 +1,36 @@
+<!-- Botón flotante -->
+<button 
+  class="fixed bottom-4 right-4 bg-blue-600 text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center hover:bg-blue-700"
+  (click)="toggleChat()">
+  💬
+</button>
+
+<!-- Ventana del chat -->
+<div *ngIf="isOpen" 
+     class="fixed bottom-20 right-4 w-96 shadow-lg border border-gray-300 rounded-lg bg-white flex flex-col">
+  
+  <div class="bg-blue-600 text-white p-2 font-bold flex items-center justify-between">
+    EasyDrive ChatBot
+    <button class="text-white text-lg" (click)="toggleChat()">✖</button>
+  </div>
+
+  <!-- Mensajes -->
+  <div class="flex-1 p-2 overflow-y-auto space-y-4 max-h-96">
+    <div *ngFor="let msg of messages"
+         [ngClass]="msg.sender === 'Usuario' ? 'text-right text-blue-600' : 'text-left text-green-600'">
+
+      <div>
+        <span class="font-semibold">{{ msg.sender }}:</span> {{ msg.text }}
+      </div>
+
+      <!-- Opciones -->
+      <div *ngIf="msg.options" class="mt-2 flex flex-wrap gap-2">
+        <button *ngFor="let opt of msg.options"
+                (click)="handleOption(opt)"
+                class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">
+          {{ opt.label }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

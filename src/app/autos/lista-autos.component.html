@@ -1,0 +1,58 @@
+<div class="flex min-h-screen bg-gray-50">
+  <!-- Menú lateral -->
+  <app-dashboard-menu class="w-64 bg-white shadow-md"></app-dashboard-menu>
+
+  <!-- Contenido principal -->
+  <div class="flex-1 p-8">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6">🚗 Lista de Autos</h2>
+
+    <!-- Mensaje de error -->
+    <div *ngIf="mensajeError" class="bg-red-100 text-red-800 p-4 rounded mb-6 shadow">
+      {{ mensajeError }}
+    </div>
+
+    <!-- Tabla de autos -->
+    <div *ngIf="autos.length > 0" class="overflow-x-auto rounded-lg shadow">
+      <table class="min-w-full divide-y divide-gray-200 bg-white">
+        <thead class="bg-gray-800 text-white">
+          <tr>
+            <th class="py-3 px-6 text-left text-lg font-semibold">Nombre</th>
+            <th class="py-3 px-6 text-left text-lg font-semibold">Modelo</th>
+            <th class="py-3 px-6 text-left text-lg font-semibold">Color</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <tr *ngFor="let auto of autosPaginados" class="hover:bg-gray-100 transition">
+            <td class="py-3 px-6 font-medium text-gray-700">{{ auto.Nombre }}</td>
+            <td class="py-3 px-6 text-gray-600">{{ auto.Modelo }}</td>
+            <td class="py-3 px-6 text-gray-600">{{ auto.Color }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Paginación -->
+    <div class="flex justify-center mt-4 space-x-4">
+      <button
+        (click)="anteriorPagina()"
+        [disabled]="paginaActual === 1"
+        class="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
+      >
+        Anterior
+      </button>
+      <span class="py-2">Página {{ paginaActual }} de {{ totalPaginas() }}</span>
+      <button
+        (click)="siguientePagina()"
+        [disabled]="paginaActual === totalPaginas()"
+        class="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
+      >
+        Siguiente
+      </button>
+    </div>
+
+    <!-- Mensaje si no hay autos -->
+    <div *ngIf="autos.length === 0 && !mensajeError" class="text-gray-500 mt-6 text-lg">
+      No hay autos disponibles por ahora.
+    </div>
+  </div>
+</div>

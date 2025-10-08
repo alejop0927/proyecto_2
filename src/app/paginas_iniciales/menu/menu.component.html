@@ -1,0 +1,45 @@
+<nav id="navbar" class="fixed w-full z-50 transition-all duration-500 bg-black bg-opacity-90 backdrop-blur-md border-b border-yellow-400">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between items-center h-20">
+    
+    <!-- Logo -->
+    <div class="flex items-center space-x-3">
+      <div class="relative group">
+        <div class="h-10 w-10 rounded-lg bg-black flex items-center justify-center border border-yellow-400 transform group-hover:scale-110 transition duration-500">
+          <span class="font-bold text-yellow-400 text-lg">EA</span>
+        </div>
+      </div>
+      <span class="text-white text-xl font-display font-bold tracking-wider">
+        Easy<span class="text-yellow-400">Drive</span>
+      </span>
+    </div>
+
+    <!-- Menú escritorio -->
+    <div class="hidden md:flex space-x-6 items-center">
+      <a routerLink="/saber-mas" class="px-4 py-2 text-white font-medium hover:text-yellow-400 transition">Inicio</a>
+      <a routerLink="/catalogo" class="px-4 py-2 text-white font-medium hover:text-yellow-400 transition">Vehículos</a>
+      <a routerLink="/contacto" class="px-4 py-2 text-white font-medium hover:text-yellow-400 transition">Contacto</a>
+
+      <!-- Botón login -->
+      <a routerLink="/login" class="px-4 py-2 bg-gradient-to-r from-yellow-500 to-yellow-600 text-black rounded-lg font-semibold hover:from-yellow-400 hover:to-yellow-500 transition">
+        Login
+      </a>
+    </div>
+
+    <!-- Botón menú móvil -->
+    <button (click)="toggleMenu()" class="md:hidden text-yellow-400 text-2xl">
+      <i class="fas fa-bars"></i>
+    </button>
+
+  </div>
+
+  <!-- Menú móvil -->
+  <div [class.hidden]="!menuOpen" class="md:hidden bg-black bg-opacity-90 backdrop-blur-md border-t border-yellow-400 p-5 space-y-4">
+    <a routerLink="/saber-mas" class="block text-white font-semibold hover:text-yellow-400">Inicio</a>
+    <a routerLink="/catalogo" class="block text-white font-semibold hover:text-yellow-400">Vehículos</a>
+    <a routerLink="/contacto" class="block text-white font-semibold hover:text-yellow-400">Contacto</a>
+
+    <a routerLink="/login" class="block px-5 py-3 bg-gradient-to-r from-yellow-500 to-yellow-600 text-black rounded-lg font-semibold hover:from-yellow-400 hover:to-yellow-500 text-center">
+      <i class="fas fa-sign-in-alt mr-2"></i> Login
+    </a>
+  </div>
+</nav>

@@ -1,0 +1,81 @@
+{
+  "name": "easy-drive",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Proyecto Angular 20 con backend Express y FastAPI",
+  "main": "index.js",
+  "scripts": {
+    "ng": "ng",
+    "frontend": "ng serve",
+    "backend": "node ./backend/server.js",
+    "fastapi": "python -m uvicorn backend.main:app --reload --host 127.0.0.1 --port 8000",
+    "cargar-vehiculos": "node ./backend/cargarVehiculos.js",
+    "dev": "concurrently -n \"ANGULAR,EXPRESS,FASTAPI\" -c \"blue,green,red\" \"npm run frontend\" \"npm run backend\" \"npm run fastapi\"",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "serve:ssr:easy-drive": "node dist/easy-drive/server/server.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@angular/common": "^20.2.0",
+    "@angular/compiler": "^20.2.0",
+    "@angular/core": "^20.2.0",
+    "@angular/forms": "^20.2.1",
+    "@angular/platform-browser": "^20.2.0",
+    "@angular/platform-server": "^20.2.0",
+    "@angular/router": "^20.2.0",
+    "@angular/ssr": "^20.2.1",
+    "@tailwindcss/postcss": "^4.1.12",
+    "bcrypt": "^6.0.0",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "csv-parser": "^3.2.0",
+    "express": "^5.1.0",
+    "express-jwt": "^8.5.1",
+    "jsonwebtoken": "^9.0.2",
+    "jwks-rsa": "^3.2.0",
+    "mysql2": "^3.15.1",
+    "node-fetch": "^3.3.2",
+    "rxjs": "~7.8.0",
+    "sweetalert2": "^11.23.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.15.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^20.3.3",
+    "@angular/build": "^20.2.0",
+    "@angular/cli": "^20.2.0",
+    "@angular/compiler-cli": "^20.2.0",
+    "@tailwindcss/postcss7-compat": "^2.2.17",
+    "@types/express": "^5.0.1",
+    "@types/jasmine": "~5.1.0",
+    "@types/node": "^20.17.19",
+    "autoprefixer": "^10.4.21",
+    "concurrently": "^9.2.1",
+    "jasmine-core": "~5.9.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.12",
+    "typescript": "~5.9.2"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "overrides": [
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "angular"
+        }
+      }
+    ]
+  }
+}
