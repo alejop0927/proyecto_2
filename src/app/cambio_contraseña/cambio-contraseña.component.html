@@ -1,17 +1,17 @@
 <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-black relative overflow-hidden">
   
-  <!-- Partículas doradas flotantes -->
+  <!-- Partículas azules flotantes -->
   <div class="absolute inset-0 pointer-events-none">
-    <div class="absolute top-10 left-5 w-3 h-3 bg-yellow-400 rounded-full opacity-20 animate-bounce-slow"></div>
-    <div class="absolute top-1/4 right-10 w-4 h-4 bg-yellow-300 rounded-full opacity-15 animate-bounce-slow delay-200"></div>
-    <div class="absolute bottom-20 left-20 w-2 h-2 bg-yellow-500 rounded-full opacity-25 animate-bounce-slow delay-400"></div>
-    <div class="absolute bottom-10 right-10 w-5 h-5 bg-yellow-400 rounded-full opacity-10 animate-bounce-slow delay-600"></div>
+    <div class="absolute top-10 left-5 w-3 h-3 bg-blue-500 rounded-full opacity-20 animate-bounce-slow"></div>
+    <div class="absolute top-1/4 right-10 w-4 h-4 bg-cyan-400 rounded-full opacity-15 animate-bounce-slow delay-200"></div>
+    <div class="absolute bottom-20 left-20 w-2 h-2 bg-blue-300 rounded-full opacity-25 animate-bounce-slow delay-400"></div>
+    <div class="absolute bottom-10 right-10 w-5 h-5 bg-sky-500 rounded-full opacity-10 animate-bounce-slow delay-600"></div>
   </div>
 
   <!-- Card principal -->
-  <div class="relative bg-gray-900/90 backdrop-blur-md border border-yellow-400 rounded-3xl shadow-2xl w-full max-w-md p-10 hover:shadow-[0_0_40px_rgba(212,175,55,0.6)] transition-shadow duration-500">
+  <div class="relative bg-gray-900/90 backdrop-blur-md border border-blue-500 rounded-3xl shadow-2xl w-full max-w-md p-10 hover:shadow-[0_0_40px_rgba(0,114,206,0.6)] transition-shadow duration-500">
     
-    <h2 class="text-4xl font-extrabold text-center text-yellow-400 mb-8 drop-shadow-lg animate-pulse">
+    <h2 class="text-4xl font-extrabold text-center text-blue-400 mb-8 drop-shadow-lg animate-pulse-bmw">
       Cambiar Contraseña
     </h2>
 
@@ -20,33 +20,33 @@
         <label class="block text-gray-300 mb-2 font-semibold">Correo Electrónico</label>
         <input type="email" [(ngModel)]="email" name="email" required placeholder="ejemplo@correo.com"
                class="w-full px-5 py-3 rounded-xl bg-gray-800/70 border border-gray-600 text-white placeholder-gray-400 
-                      focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400 transition-all duration-300 shadow-inner"/>
+                      focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400 transition-all duration-300 shadow-inner"/>
       </div>
 
       <div>
         <label class="block text-gray-300 mb-2 font-semibold">Contraseña Actual</label>
         <input type="password" [(ngModel)]="currentPassword" name="currentPassword" required placeholder="••••••••"
                class="w-full px-5 py-3 rounded-xl bg-gray-800/70 border border-gray-600 text-white placeholder-gray-400 
-                      focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400 transition-all duration-300 shadow-inner"/>
+                      focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400 transition-all duration-300 shadow-inner"/>
       </div>
 
       <div>
         <label class="block text-gray-300 mb-2 font-semibold">Nueva Contraseña</label>
         <input type="password" [(ngModel)]="newPassword" name="newPassword" required placeholder="••••••••"
                class="w-full px-5 py-3 rounded-xl bg-gray-800/70 border border-gray-600 text-white placeholder-gray-400 
-                      focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400 transition-all duration-300 shadow-inner"/>
+                      focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400 transition-all duration-300 shadow-inner"/>
       </div>
 
       <div>
         <label class="block text-gray-300 mb-2 font-semibold">Confirmar Nueva Contraseña</label>
         <input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required placeholder="••••••••"
                class="w-full px-5 py-3 rounded-xl bg-gray-800/70 border border-gray-600 text-white placeholder-gray-400 
-                      focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400 transition-all duration-300 shadow-inner"/>
+                      focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400 transition-all duration-300 shadow-inner"/>
       </div>
 
       <button type="submit"
-              class="w-full py-3 bg-gradient-to-r from-yellow-500 to-yellow-600 text-black font-bold rounded-xl shadow-lg
-                     hover:from-yellow-400 hover:to-yellow-500 active:scale-95 active:shadow-inner focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all duration-150">
+              class="w-full py-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-bold rounded-xl shadow-lg
+                     hover:from-blue-500 hover:to-cyan-400 active:scale-95 active:shadow-inner focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-150">
         Cambiar Contraseña
       </button>
 
@@ -56,7 +56,7 @@
 
     <div class="text-center mt-6">
       <button (click)="goToDashboard()"
-              class="text-yellow-400 font-semibold hover:underline hover:text-yellow-300 transition-colors duration-300">
+              class="text-blue-400 font-semibold hover:underline hover:text-blue-300 transition-colors duration-300">
         Volver al Dashboard
       </button>
     </div>
@@ -76,16 +76,16 @@
 
 /* Glow en inputs al enfocar */
 input:focus {
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
-  border-color: #FFD700;
+  box-shadow: 0 0 15px rgba(0, 114, 206, 0.6);
+  border-color: #00A3FF;
 }
 
-/* Pulso dorado para el título */
-@keyframes pulse-gold {
-  0%, 100% { text-shadow: 0 0 10px #FFD700; }
-  50% { text-shadow: 0 0 25px #FFD700; }
+/* Pulso azul tipo BMW */
+@keyframes pulse-bmw {
+  0%, 100% { text-shadow: 0 0 10px #00A3FF; }
+  50% { text-shadow: 0 0 25px #0072CE; }
 }
-.animate-pulse {
-  animation: pulse-gold 2s infinite;
+.animate-pulse-bmw {
+  animation: pulse-bmw 2s infinite;
 }
 </style>

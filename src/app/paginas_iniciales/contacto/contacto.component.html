@@ -11,68 +11,69 @@
     padding: 0;
   }
 
-  /* Fondo general gris semi-opaco */
-  .bg-overlay {
-    background-color: rgba(30, 30, 30, 0.85); /* gris semi-opaco */
-    min-height: 100vh;
-  }
-
-  .gold-gradient {
-    background: linear-gradient(135deg, #D4AF37 0%, #FFD700 30%, #BF953F 100%);
+  .blue-gradient {
+    background: linear-gradient(135deg, #1E4CA1 0%, #007AFF 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-clip: text;
   }
 
-  .gold-button {
-    background: linear-gradient(135deg, #D4AF37 0%, #BF953F 100%);
-    color: #0a0a0a;
+  .blue-button {
+    background: linear-gradient(135deg, #1E4CA1 0%, #007AFF 100%);
+    color: #ffffff;
     font-weight: 600;
-    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    box-shadow: 0 6px 20px rgba(0, 122, 255, 0.35);
     transition: all 0.3s ease;
   }
 
-  .gold-button:hover {
-    background: linear-gradient(135deg, #BF953F 0%, #D4AF37 100%);
+  .blue-button:hover {
+    background: linear-gradient(135deg, #007AFF 0%, #1E4CA1 100%);
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+    box-shadow: 0 8px 25px rgba(0, 122, 255, 0.5);
   }
 
   .contact-card {
-    background: rgba(255, 255, 255, 1); /* blanco puro */
-    border: 1px solid rgba(212, 175, 55, 0.3);
+    background: rgba(255, 255, 255, 0.98);
+    border: 1px solid rgba(30, 76, 161, 0.25);
     transition: all 0.4s ease;
+    backdrop-filter: blur(8px);
   }
 
   .contact-card:hover {
-    border-color: rgba(212, 175, 55, 0.6);
+    border-color: rgba(0, 122, 255, 0.5);
     transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
+    box-shadow: 0 15px 30px rgba(0, 122, 255, 0.15);
   }
 
   .input-field {
-    background: rgba(255, 255, 255, 1);
-    border: 1px solid rgba(212, 175, 55, 0.3);
+    background: #f9fafb;
+    border: 1px solid rgba(30, 76, 161, 0.25);
     color: #1a1a1a;
     transition: all 0.3s ease;
   }
 
   .input-field:focus {
-    border-color: rgba(212, 175, 55, 0.6);
-    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+    border-color: rgba(0, 122, 255, 0.6);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.15);
   }
 
   .input-field::placeholder {
-    color: #666666;
+    color: #6b7280;
   }
 
-  .social-icon {
-    transition: all 0.3s ease;
+  .bg-bmw-light {
+    background: linear-gradient(180deg, #f4f6f8 0%, #eaeef3 100%);
   }
 
-  .social-icon:hover {
-    transform: translateY(-3px);
-    filter: drop-shadow(0 5px 15px rgba(212, 175, 55, 0.4));
+  .text-bmw-blue {
+    color: #1E4CA1;
+  }
+
+  .text-bmw-light-blue {
+    color: #007AFF;
+  }
+
+  .text-bmw-gray {
+    color: #4B5563;
   }
 
   .floating-element {
@@ -83,104 +84,94 @@
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
   }
-
-  .text-premium-dark {
-    color: #1a1a1a;
-  }
-
-  .text-premium-gray {
-    color: #4a5568;
-  }
 </style>
 
-<main class="bg-overlay flex flex-col items-center justify-center py-20 px-6 relative overflow-hidden">
+<main class="bg-bmw-light flex flex-col items-center justify-center py-20 px-6 relative overflow-hidden">
   
-  <!-- Elementos decorativos flotantes -->
+  <!-- Elementos decorativos -->
   <div class="absolute inset-0 overflow-hidden">
-    <div class="absolute top-20 left-10 w-6 h-6 bg-premium-gold rounded-full opacity-20 floating-element" style="animation-delay: 1s;"></div>
-    <div class="absolute top-40 right-20 w-8 h-8 bg-premium-light-gold rounded-full opacity-15 floating-element" style="animation-delay: 2s;"></div>
-    <div class="absolute bottom-40 left-20 w-4 h-4 bg-premium-gold rounded-full opacity-25 floating-element" style="animation-delay: 3s;"></div>
-    <div class="absolute bottom-20 right-10 w-10 h-10 bg-premium-light-gold rounded-full opacity-10 floating-element" style="animation-delay: 4s;"></div>
+    <div class="absolute top-24 left-12 w-6 h-6 bg-bmw-light-blue rounded-full opacity-20 floating-element" style="animation-delay: 1s;"></div>
+    <div class="absolute bottom-28 right-16 w-10 h-10 bg-bmw-blue rounded-full opacity-15 floating-element" style="animation-delay: 2s;"></div>
   </div>
 
   <div class="relative z-10 w-full max-w-6xl">
 
     <!-- Encabezado -->
     <div class="text-center mb-16">
-      <div class="w-20 h-20 mx-auto mb-6 bg-premium-gold/20 rounded-full flex items-center justify-center border border-premium-gold/30">
-        <i class="fas fa-headset text-premium-gold text-2xl"></i>
+      <div class="w-20 h-20 mx-auto mb-6 bg-bmw-light-blue/15 rounded-full flex items-center justify-center border border-bmw-light-blue/40">
+        <i class="fas fa-headset text-bmw-blue text-2xl"></i>
       </div>
-      <h1 class="text-5xl md:text-6xl font-display font-bold mb-6 gold-gradient">Contáctanos</h1>
-      <p class="text-xl text-white max-w-2xl mx-auto">
-        Estamos aquí para ayudarte a encontrar el vehículo de tus sueños. Experiencia premium, atención personalizada.
+      <h1 class="text-5xl md:text-6xl font-display font-bold mb-6 blue-gradient">Contáctanos</h1>
+      <p class="text-xl text-bmw-gray max-w-2xl mx-auto">
+        Queremos ofrecerte una experiencia de conducción <span class="blue-gradient font-semibold">tan elegante como un BMW</span>.
       </p>
     </div>
 
-    <!-- Contenido principal -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <!-- Contenido -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
       
-      <!-- Información de contacto -->
+      <!-- Información -->
       <div class="contact-card rounded-2xl p-8 space-y-8">
-        <h2 class="text-3xl font-display font-bold text-premium-dark mb-4">Información de Contacto</h2>
-        <p class="text-premium-gray">Conéctate con nuestro equipo de expertos. Estamos comprometidos con brindarte la mejor experiencia en la búsqueda de tu vehículo ideal.</p>
+        <h2 class="text-3xl font-display font-bold text-bmw-blue mb-4">Información de Contacto</h2>
+        <p class="text-bmw-gray">
+          Nuestro equipo está listo para asesorarte en cada paso del proceso de compra o mantenimiento de tu vehículo.
+        </p>
 
-        <!-- Datos -->
         <div class="space-y-6">
-          <div class="flex items-start space-x-4 p-4 rounded-xl bg-premium-gold/10 border border-premium-gold/30">
-            <div class="w-12 h-12 bg-premium-gold/20 rounded-full flex items-center justify-center flex-shrink-0">
-              <i class="fas fa-phone text-premium-gold text-lg"></i>
+          <div class="flex items-start space-x-4 p-4 rounded-xl bg-bmw-light-blue/10 border border-bmw-light-blue/30">
+            <div class="w-12 h-12 bg-bmw-blue/20 rounded-full flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-phone text-bmw-blue text-lg"></i>
             </div>
             <div>
-              <h3 class="text-premium-dark font-semibold mb-1">Teléfono</h3>
-              <p class="text-premium-gray">+57 312 456 7890</p>
-              <p class="text-sm text-premium-gold">Lun - Vie: 8:00 AM - 6:00 PM</p>
+              <h3 class="text-bmw-blue font-semibold mb-1">Teléfono</h3>
+              <p class="text-bmw-gray">+57 312 456 7890</p>
+              <p class="text-sm text-bmw-light-blue">Lun - Vie: 8:00 AM - 6:00 PM</p>
             </div>
           </div>
 
-          <div class="flex items-start space-x-4 p-4 rounded-xl bg-premium-gold/10 border border-premium-gold/30">
-            <div class="w-12 h-12 bg-premium-gold/20 rounded-full flex items-center justify-center flex-shrink-0">
-              <i class="fas fa-envelope text-premium-gold text-lg"></i>
+          <div class="flex items-start space-x-4 p-4 rounded-xl bg-bmw-light-blue/10 border border-bmw-light-blue/30">
+            <div class="w-12 h-12 bg-bmw-blue/20 rounded-full flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-envelope text-bmw-blue text-lg"></i>
             </div>
             <div>
-              <h3 class="text-premium-dark font-semibold mb-1">Email</h3>
-              <p class="text-premium-gray">contacto@easydrive.com</p>
-              <p class="text-sm text-premium-gold">Respuesta en menos de 24 horas</p>
+              <h3 class="text-bmw-blue font-semibold mb-1">Email</h3>
+              <p class="text-bmw-gray">contacto@easydrive.com</p>
+              <p class="text-sm text-bmw-light-blue">Respuesta en menos de 24 horas</p>
             </div>
           </div>
 
-          <div class="flex items-start space-x-4 p-4 rounded-xl bg-premium-gold/10 border border-premium-gold/30">
-            <div class="w-12 h-12 bg-premium-gold/20 rounded-full flex items-center justify-center flex-shrink-0">
-              <i class="fas fa-map-marker-alt text-premium-gold text-lg"></i>
+          <div class="flex items-start space-x-4 p-4 rounded-xl bg-bmw-light-blue/10 border border-bmw-light-blue/30">
+            <div class="w-12 h-12 bg-bmw-blue/20 rounded-full flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-map-marker-alt text-bmw-blue text-lg"></i>
             </div>
             <div>
-              <h3 class="text-premium-dark font-semibold mb-1">Ubicación</h3>
-              <p class="text-premium-gray">Medellín, Colombia</p>
-              <p class="text-sm text-premium-gold">Showroom premium disponible</p>
+              <h3 class="text-bmw-blue font-semibold mb-1">Ubicación</h3>
+              <p class="text-bmw-gray">Medellín, Colombia</p>
+              <p class="text-sm text-bmw-light-blue">Showroom disponible con cita previa</p>
             </div>
           </div>
         </div>
-
       </div>
 
-      <!-- Formulario de contacto -->
+      <!-- Formulario -->
       <div class="contact-card rounded-2xl p-8">
-        <h2 class="text-3xl font-display font-bold text-premium-dark mb-4">Envíanos un Mensaje</h2>
-        <p class="text-premium-gray mb-6">Completa el formulario y nos pondremos en contacto contigo pronto.</p>
+        <h2 class="text-3xl font-display font-bold text-bmw-blue mb-4">Envíanos un Mensaje</h2>
+        <p class="text-bmw-gray mb-6">
+          Completa el formulario y uno de nuestros asesores te contactará pronto.
+        </p>
 
         <form class="space-y-6">
-          <input type="text" placeholder="Nombre completo" class="w-full px-4 py-3 rounded-xl input-field placeholder-premium-gray focus:outline-none">
-          <input type="email" placeholder="Correo electrónico" class="w-full px-4 py-3 rounded-xl input-field placeholder-premium-gray focus:outline-none">
-          <input type="tel" placeholder="Teléfono" class="w-full px-4 py-3 rounded-xl input-field placeholder-premium-gray focus:outline-none">
-          <textarea rows="5" placeholder="Mensaje" class="w-full px-4 py-3 rounded-xl input-field placeholder-premium-gray focus:outline-none resize-none"></textarea>
-          <button type="submit" class="gold-button w-full py-4 rounded-xl font-bold text-lg transition-all duration-300">
+          <input type="text" placeholder="Nombre completo" class="w-full px-4 py-3 rounded-xl input-field focus:outline-none">
+          <input type="email" placeholder="Correo electrónico" class="w-full px-4 py-3 rounded-xl input-field focus:outline-none">
+          <input type="tel" placeholder="Teléfono" class="w-full px-4 py-3 rounded-xl input-field focus:outline-none">
+          <textarea rows="5" placeholder="Mensaje" class="w-full px-4 py-3 rounded-xl input-field focus:outline-none resize-none"></textarea>
+          <button type="submit" class="blue-button w-full py-4 rounded-xl font-bold text-lg transition-all duration-300">
             <i class="fas fa-paper-plane mr-2"></i> Enviar Mensaje
           </button>
         </form>
       </div>
-
     </div>
   </div>
-
 </main>
 
 <app-footer></app-footer>

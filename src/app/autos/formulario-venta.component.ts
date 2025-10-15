@@ -23,52 +23,59 @@ interface Usuario {
   standalone: true,
   imports: [CommonModule, FormsModule, DashboardMenuComponent],
   template: `
-    <div class="min-h-screen bg-gradient-to-br from-gray-100 to-gray-50 flex">
+    <div class="min-h-screen flex bg-white text-gray-900">
       <!-- Menú lateral -->
-      <div class="w-64 flex-shrink-0">
+      <div class="w-64 flex-shrink-0 bg-white shadow-md">
         <app-dashboard-menu></app-dashboard-menu>
       </div>
 
       <!-- Contenido principal -->
-      <div class="flex-1 p-6 overflow-auto">
-        <div class="max-w-md mx-auto">
-          <div class="bg-gray-900 text-white p-6 rounded-2xl shadow-xl border border-gray-800">
-            <h2 class="text-2xl font-bold text-yellow-400 mb-4">Registrar Venta</h2>
+      <div class="flex-1 p-10 overflow-auto">
+        <div class="max-w-md mx-auto bg-white border border-gray-200 rounded-2xl shadow-lg p-8">
+          <h2 class="text-3xl font-bold text-center text-[#0066b1] mb-6">Registrar Venta</h2>
 
-            <div class="mb-4">
-              <label class="block mb-1 font-semibold">Selecciona Usuario</label>
-              <select [(ngModel)]="usuario_id" class="w-full p-2 rounded bg-gray-800 text-white border border-gray-700">
-                <option value="" disabled>-- Elige un usuario --</option>
-                <option *ngFor="let usuario of usuarios" [value]="usuario.id">
-                  {{ usuario.nombre }} ({{ usuario.email }})
-                </option>
-              </select>
-            </div>
-
-            <div class="mb-4">
-              <label class="block mb-1 font-semibold">Selecciona Auto</label>
-              <select [(ngModel)]="auto_id" class="w-full p-2 rounded bg-gray-800 text-white border border-gray-700">
-                <option value="" disabled>-- Elige un auto --</option>
-                <option *ngFor="let auto of autos" [value]="auto.id">
-                  {{ auto.Nombre }} - {{ auto.Modelo }} ({{ auto.Precio }})
-                </option>
-              </select>
-            </div>
-
-            <div class="mb-4">
-              <label class="block mb-1 font-semibold">Precio Final</label>
-              <input type="number" [(ngModel)]="precio" placeholder="Precio final"
-                    class="w-full p-2 rounded bg-gray-800 text-white border border-gray-700" />
-            </div>
-
-            <button (click)="registrarVenta()"
-                    class="w-full bg-yellow-600 hover:bg-yellow-700 text-black font-bold py-2 rounded transition">
-              Registrar Venta
-            </button>
-
-            <p class="mt-4 text-center text-red-500 font-semibold" *ngIf="mensaje">{{ mensaje }}</p>
-            <p class="mt-4 text-center text-green-500 font-semibold" *ngIf="mensajeExito">{{ mensajeExito }}</p>
+          <!-- Selección de Usuario -->
+          <div class="mb-5">
+            <label class="block mb-2 font-semibold text-gray-800">Selecciona Usuario</label>
+            <select [(ngModel)]="usuario_id"
+                    class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0066b1] focus:outline-none">
+              <option value="" disabled>-- Elige un usuario --</option>
+              <option *ngFor="let usuario of usuarios" [value]="usuario.id">
+                {{ usuario.nombre }} ({{ usuario.email }})
+              </option>
+            </select>
           </div>
+
+          <!-- Selección de Auto -->
+          <div class="mb-5">
+            <label class="block mb-2 font-semibold text-gray-800">Selecciona Auto</label>
+            <select [(ngModel)]="auto_id"
+                    class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0066b1] focus:outline-none">
+              <option value="" disabled>-- Elige un auto --</option>
+              <option *ngFor="let auto of autos" [value]="auto.id">
+                {{ auto.Nombre }} - {{ auto.Modelo }} ({{ auto.Precio | currency:'COP' }})
+              </option>
+            </select>
+          </div>
+
+          <!-- Precio -->
+          <div class="mb-6">
+            <label class="block mb-2 font-semibold text-gray-800">Precio Final</label>
+            <input type="number"
+                   [(ngModel)]="precio"
+                   placeholder="Precio final"
+                   class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0066b1] focus:outline-none" />
+          </div>
+
+          <!-- Botón principal -->
+          <button (click)="registrarVenta()"
+                  class="w-full bg-[#0066b1] hover:bg-[#004c80] text-white font-semibold py-2 rounded-lg transition">
+            Registrar Venta
+          </button>
+
+          <!-- Mensajes -->
+          <p class="mt-4 text-center text-red-600 font-semibold" *ngIf="mensaje">{{ mensaje }}</p>
+          <p class="mt-4 text-center text-green-600 font-semibold" *ngIf="mensajeExito">{{ mensajeExito }}</p>
         </div>
       </div>
     </div>
@@ -91,29 +98,23 @@ export class RegistroVentaComponent implements OnInit {
   }
 
   cargarAutos() {
-    this.http.get<Auto[]>('http://localhost:4000/api/autos')
-      .subscribe({
-        next: (autos) => {
-          this.autos = autos;
-        },
-        error: (error) => {
-          console.error('Error cargando autos:', error);
-          this.mensaje = 'Error al cargar la lista de autos';
-        }
-      });
+    this.http.get<Auto[]>('http://localhost:4000/api/autos').subscribe({
+      next: (autos) => (this.autos = autos),
+      error: (error) => {
+        console.error('Error cargando autos:', error);
+        this.mensaje = 'Error al cargar la lista de autos';
+      }
+    });
   }
 
   cargarUsuarios() {
-    this.http.get<Usuario[]>('http://localhost:4000/api/usuarios')
-      .subscribe({
-        next: (usuarios) => {
-          this.usuarios = usuarios;
-        },
-        error: (error) => {
-          console.error('Error cargando usuarios:', error);
-          this.mensaje = 'Error al cargar la lista de usuarios';
-        }
-      });
+    this.http.get<Usuario[]>('http://localhost:4000/api/usuarios').subscribe({
+      next: (usuarios) => (this.usuarios = usuarios),
+      error: (error) => {
+        console.error('Error cargando usuarios:', error);
+        this.mensaje = 'Error al cargar la lista de usuarios';
+      }
+    });
   }
 
   registrarVenta() {

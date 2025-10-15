@@ -7,42 +7,45 @@
 <style>
   body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #0a0a0a;
-    color: #f5f5f5;
+    background-color: #0A0A0A;
+    color: #F5F5F5;
   }
 
-  .gold-gradient {
-    background: linear-gradient(135deg, #D4AF37 0%, #FFD700 30%, #BF953F 100%);
+  /* Gradientes BMW */
+  .bmw-gradient {
+    background: linear-gradient(135deg, #1E4CA1 0%, #007AFF 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  .gold-button {
-    background: linear-gradient(135deg, #D4AF37 0%, #BF953F 100%);
-    color: #0a0a0a;
+  /* Botón principal BMW */
+  .bmw-button {
+    background: linear-gradient(135deg, #1E4CA1 0%, #007AFF 100%);
+    color: #ffffff;
     font-weight: 600;
-    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    box-shadow: 0 6px 20px rgba(0, 122, 255, 0.4);
     transition: all 0.3s ease;
   }
-  .gold-button:hover {
-    background: linear-gradient(135deg, #BF953F 0%, #D4AF37 100%);
+  .bmw-button:hover {
+    background: linear-gradient(135deg, #007AFF 0%, #1E4CA1 100%);
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+    box-shadow: 0 8px 25px rgba(0, 122, 255, 0.6);
   }
 
+  /* Tarjetas de vehículos */
   .car-card {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(212, 175, 55, 0.2);
+    border: 1px solid rgba(0, 122, 255, 0.2);
     transition: all 0.4s ease;
     overflow: hidden;
   }
 
   .car-card:hover {
-    border-color: rgba(212, 175, 55, 0.5);
+    border-color: rgba(0, 122, 255, 0.5);
     transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
+    box-shadow: 0 15px 30px rgba(0, 122, 255, 0.25);
   }
 
   .car-card img {
@@ -56,22 +59,24 @@
     transform: scale(1.05);
   }
 
+  /* Tarjeta de login */
   .login-card {
-    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(30, 76, 161, 0.1) 0%, rgba(0, 122, 255, 0.05) 100%);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(212, 175, 55, 0.3);
+    border: 1px solid rgba(0, 122, 255, 0.3);
     transition: all 0.4s ease;
   }
 
   .login-card:hover {
-    border-color: rgba(212, 175, 55, 0.6);
+    border-color: rgba(0, 122, 255, 0.6);
     transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.15);
+    box-shadow: 0 10px 25px rgba(0, 122, 255, 0.15);
   }
 
+  /* Precio */
   .price-tag {
-    background: linear-gradient(135deg, #D4AF37 0%, #BF953F 100%);
-    color: #0a0a0a;
+    background: linear-gradient(135deg, #1E4CA1 0%, #007AFF 100%);
+    color: #ffffff;
     font-weight: bold;
   }
 
@@ -80,26 +85,24 @@
   }
 </style>
 
-<section class="min-h-screen px-6 py-20 bg-premium-black">
-  <!-- Título Impactante -->
+<section class="min-h-screen px-6 py-20 bg-bmw-black">
+  <!-- Título principal -->
   <div class="max-w-6xl mx-auto text-center mb-16">
-    <h1 class="text-5xl md:text-6xl font-display font-bold mb-6 gold-gradient">
-      Catálogo Exclusivo
+    <h1 class="text-5xl md:text-6xl font-display font-bold mb-6 bmw-gradient">
+      Catálogo 
     </h1>
-    <p class="text-xl text-premium-gray max-w-3xl mx-auto">
-      Descubre nuestra selección premium de vehículos. Donde el lujo se encuentra con el rendimiento.
+    <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+      Explora la línea completa. Potencia, precisión y elegancia alemana en cada detalle.
     </p>
   </div>
 
   <!-- Grid de vehículos + login -->
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
 
-    <!-- Vehículo 1 - Aston Martin -->
+    <!-- Vehículo 1 -->
     <div class="car-card rounded-2xl overflow-hidden">
       <div class="relative overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1170&q=80" 
-             alt="Aston Martin" 
-             class="w-full">
+        <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1170&q=80" alt="Aston Martin" class="w-full">
         <div class="absolute top-4 right-4 price-tag px-3 py-1 rounded-full text-sm">
           $145,000
         </div>
@@ -107,33 +110,29 @@
       <div class="p-6">
         <div class="flex justify-between items-start mb-3">
           <h3 class="text-xl font-semibold text-white">Aston Martin Vantage</h3>
-          <span class="text-premium-gold text-sm font-medium">2024</span>
+          <span class="text-blue-400 text-sm font-medium">2024</span>
         </div>
-        <p class="text-premium-gray text-sm mb-4">Deportivo de lujo con motor V8 y diseño icónico británico.</p>
+        <p class="text-gray-400 text-sm mb-4">Deportivo británico de lujo con motor V8 y diseño icónico.</p>
         <div class="flex items-center justify-between">
-          <div class="flex items-center space-x-4 text-sm text-premium-gray">
+          <div class="flex items-center space-x-4 text-sm text-gray-400">
             <span class="flex items-center">
-              <i class="fas fa-tachometer-alt mr-1 text-premium-gold"></i>
-              4.0L V8
+              <i class="fas fa-tachometer-alt mr-1 text-blue-400"></i> 4.0L V8
             </span>
             <span class="flex items-center">
-              <i class="fas fa-bolt mr-1 text-premium-gold"></i>
-              503 HP
+              <i class="fas fa-bolt mr-1 text-blue-400"></i> 503 HP
             </span>
           </div>
-          <button class="text-premium-gold hover:text-premium-light-gold transition-colors">
+          <button class="text-blue-400 hover:text-blue-300 transition-colors">
             <i class="fas fa-arrow-right text-lg"></i>
           </button>
         </div>
       </div>
     </div>
 
-    <!-- Vehículo 2 - Range Rover -->
+    <!-- Vehículo 2 -->
     <div class="car-card rounded-2xl overflow-hidden">
       <div class="relative overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1170&q=80" 
-             alt="Range Rover" 
-             class="w-full">
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1170&q=80" alt="Range Rover" class="w-full">
         <div class="absolute top-4 right-4 price-tag px-3 py-1 rounded-full text-sm">
           $89,000
         </div>
@@ -141,33 +140,29 @@
       <div class="p-6">
         <div class="flex justify-between items-start mb-3">
           <h3 class="text-xl font-semibold text-white">Range Rover Sport</h3>
-          <span class="text-premium-gold text-sm font-medium">2024</span>
+          <span class="text-blue-400 text-sm font-medium">2024</span>
         </div>
-        <p class="text-premium-gray text-sm mb-4">SUV premium con lujo británico y capacidad todoterreno excepcional.</p>
+        <p class="text-gray-400 text-sm mb-4">SUV premium con lujo y capacidad todoterreno.</p>
         <div class="flex items-center justify-between">
-          <div class="flex items-center space-x-4 text-sm text-premium-gray">
+          <div class="flex items-center space-x-4 text-sm text-gray-400">
             <span class="flex items-center">
-              <i class="fas fa-tachometer-alt mr-1 text-premium-gold"></i>
-              3.0L Hybrid
+              <i class="fas fa-tachometer-alt mr-1 text-blue-400"></i> 3.0L Hybrid
             </span>
             <span class="flex items-center">
-              <i class="fas fa-bolt mr-1 text-premium-gold"></i>
-              395 HP
+              <i class="fas fa-bolt mr-1 text-blue-400"></i> 395 HP
             </span>
           </div>
-          <button class="text-premium-gold hover:text-premium-light-gold transition-colors">
+          <button class="text-blue-400 hover:text-blue-300 transition-colors">
             <i class="fas fa-arrow-right text-lg"></i>
           </button>
         </div>
       </div>
     </div>
 
-    <!-- Vehículo 3 - Tesla -->
+    <!-- Vehículo 3 -->
     <div class="car-card rounded-2xl overflow-hidden">
       <div class="relative overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1170&q=80" 
-             alt="Tesla Model S" 
-             class="w-full">
+        <img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1170&q=80" alt="Tesla Model S" class="w-full">
         <div class="absolute top-4 right-4 price-tag px-3 py-1 rounded-full text-sm">
           $109,000
         </div>
@@ -175,33 +170,29 @@
       <div class="p-6">
         <div class="flex justify-between items-start mb-3">
           <h3 class="text-xl font-semibold text-white">Tesla Model S</h3>
-          <span class="text-premium-gold text-sm font-medium">2024</span>
+          <span class="text-blue-400 text-sm font-medium">2024</span>
         </div>
-        <p class="text-premium-gray text-sm mb-4">Eléctrico de alto rendimiento con tecnología autónoma y gran autonomía.</p>
+        <p class="text-gray-400 text-sm mb-4">Eléctrico de alto rendimiento con autonomía avanzada.</p>
         <div class="flex items-center justify-between">
-          <div class="flex items-center space-x-4 text-sm text-premium-gray">
+          <div class="flex items-center space-x-4 text-sm text-gray-400">
             <span class="flex items-center">
-              <i class="fas fa-bolt mr-1 text-premium-gold"></i>
-              Eléctrico
+              <i class="fas fa-bolt mr-1 text-blue-400"></i> Eléctrico
             </span>
             <span class="flex items-center">
-              <i class="fas fa-road mr-1 text-premium-gold"></i>
-              640 km
+              <i class="fas fa-road mr-1 text-blue-400"></i> 640 km
             </span>
           </div>
-          <button class="text-premium-gold hover:text-premium-light-gold transition-colors">
+          <button class="text-blue-400 hover:text-blue-300 transition-colors">
             <i class="fas fa-arrow-right text-lg"></i>
           </button>
         </div>
       </div>
     </div>
 
-    <!-- Vehículo 4 - Porsche -->
+    <!-- Vehículo 4 -->
     <div class="car-card rounded-2xl overflow-hidden">
       <div class="relative overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1170&q=80" 
-             alt="Porsche 911" 
-             class="w-full">
+        <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1170&q=80" alt="Porsche 911" class="w-full">
         <div class="absolute top-4 right-4 price-tag px-3 py-1 rounded-full text-sm">
           $275,000
         </div>
@@ -209,21 +200,19 @@
       <div class="p-6">
         <div class="flex justify-between items-start mb-3">
           <h3 class="text-xl font-semibold text-white">Porsche 911 Turbo S</h3>
-          <span class="text-premium-gold text-sm font-medium">2024</span>
+          <span class="text-blue-400 text-sm font-medium">2024</span>
         </div>
-        <p class="text-premium-gray text-sm mb-4">Icono deportivo alemán con tracción integral y aceleración brutal.</p>
+        <p class="text-gray-400 text-sm mb-4">Icono alemán con tracción integral y aceleración brutal.</p>
         <div class="flex items-center justify-between">
-          <div class="flex items-center space-x-4 text-sm text-premium-gray">
+          <div class="flex items-center space-x-4 text-sm text-gray-400">
             <span class="flex items-center">
-              <i class="fas fa-tachometer-alt mr-1 text-premium-gold"></i>
-              3.7L Twin-Turbo
+              <i class="fas fa-tachometer-alt mr-1 text-blue-400"></i> 3.7L Twin-Turbo
             </span>
             <span class="flex items-center">
-              <i class="fas fa-bolt mr-1 text-premium-gold"></i>
-              640 HP
+              <i class="fas fa-bolt mr-1 text-blue-400"></i> 640 HP
             </span>
           </div>
-          <button class="text-premium-gold hover:text-premium-light-gold transition-colors">
+          <button class="text-blue-400 hover:text-blue-300 transition-colors">
             <i class="fas fa-arrow-right text-lg"></i>
           </button>
         </div>
@@ -233,9 +222,7 @@
     <!-- Vehículo 5 - BMW X5 -->
     <div class="car-card rounded-2xl overflow-hidden">
       <div class="relative overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1170&q=80" 
-             alt="BMW X5" 
-             class="w-full">
+        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1170&q=80" alt="BMW X5" class="w-full">
         <div class="absolute top-4 right-4 price-tag px-3 py-1 rounded-full text-sm">
           $72,000
         </div>
@@ -243,59 +230,54 @@
       <div class="p-6">
         <div class="flex justify-between items-start mb-3">
           <h3 class="text-xl font-semibold text-white">BMW X5 M Competition</h3>
-          <span class="text-premium-gold text-sm font-medium">2024</span>
+          <span class="text-blue-400 text-sm font-medium">2024</span>
         </div>
-        <p class="text-premium-gray text-sm mb-4">SUV deportivo con lujo alemán y performance excepcional.</p>
+        <p class="text-gray-400 text-sm mb-4">SUV deportivo con precisión alemana y performance excepcional.</p>
         <div class="flex items-center justify-between">
-          <div class="flex items-center space-x-4 text-sm text-premium-gray">
+          <div class="flex items-center space-x-4 text-sm text-gray-400">
             <span class="flex items-center">
-              <i class="fas fa-tachometer-alt mr-1 text-premium-gold"></i>
-              4.4L V8
+              <i class="fas fa-tachometer-alt mr-1 text-blue-400"></i> 4.4L V8
             </span>
             <span class="flex items-center">
-              <i class="fas fa-bolt mr-1 text-premium-gold"></i>
-              617 HP
+              <i class="fas fa-bolt mr-1 text-blue-400"></i> 617 HP
             </span>
           </div>
-          <button class="text-premium-gold hover:text-premium-light-gold transition-colors">
+          <button class="text-blue-400 hover:text-blue-300 transition-colors">
             <i class="fas fa-arrow-right text-lg"></i>
           </button>
         </div>
       </div>
     </div>
 
-    <!-- Tarjeta de Acceso Exclusivo (MANTENIDA) -->
+    <!-- Tarjeta de acceso -->
     <div class="login-card rounded-2xl p-8 text-center flex flex-col justify-center">
       <div class="mb-6">
-        <div class="w-16 h-16 mx-auto mb-4 bg-premium-gold/20 rounded-full flex items-center justify-center border border-premium-gold/30">
-          <i class="fas fa-gem text-premium-gold text-2xl"></i>
+        <div class="w-16 h-16 mx-auto mb-4 bg-blue-500/20 rounded-full flex items-center justify-center border border-blue-400/30">
+          <i class="fas fa-gem text-blue-400 text-2xl"></i>
         </div>
         <h3 class="text-2xl font-bold text-white mb-3">Acceso Exclusivo</h3>
-        <p class="text-premium-gray mb-6">
-          Descubre nuestra colección completa de vehículos premium y ofertas exclusivas para miembros.
+        <p class="text-gray-400 mb-6">
+          Accede a toda la gama, ofertas especiales y configuraciones personalizadas.
         </p>
       </div>
-      
+
       <div class="space-y-4">
-        <a routerLink="/login" class="gold-button px-8 py-3 flex items-center justify-center rounded-full cursor-pointer w-full">
+        <a routerLink="/login" class="bmw-button px-8 py-3 flex items-center justify-center rounded-full cursor-pointer w-full">
           <i class="fas fa-lock-open mr-3"></i> Iniciar Sesión
         </a>
-        <a routerLink="/register" class="px-8 py-3 flex items-center justify-center rounded-full border border-premium-gold text-premium-gold hover:bg-premium-gold/10 transition-all cursor-pointer w-full">
+        <a routerLink="/register" class="px-8 py-3 flex items-center justify-center rounded-full border border-blue-400 text-blue-400 hover:bg-blue-500/10 transition-all cursor-pointer w-full">
           <i class="fas fa-user-plus mr-3"></i> Crear Cuenta
         </a>
       </div>
 
-      <div class="mt-6 pt-6 border-t border-premium-gold/20">
-        <p class="text-sm text-premium-gray">
-          <i class="fas fa-star text-premium-gold mr-1"></i>
-          Acceso inmediato a +50 vehículos premium
+      <div class="mt-6 pt-6 border-t border-blue-400/20">
+        <p class="text-sm text-gray-400">
+          <i class="fas fa-star text-blue-400 mr-1"></i>
+          Acceso exclusivo a +50 modelos 
         </p>
       </div>
     </div>
-
   </div>
-
-
 </section>
 
 <app-footer></app-footer>

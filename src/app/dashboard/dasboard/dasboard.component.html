@@ -1,41 +1,46 @@
-<div class="flex">
+<div class="flex min-h-screen bg-white text-gray-800">
+  <!-- Sidebar -->
   <app-dashboard-menu></app-dashboard-menu>
 
   <!-- Contenido principal -->
-  <div class="flex-1 flex flex-col bg-gray-100">
+  <div class="flex-1 flex flex-col">
 
     <!-- Header -->
-    <header class="flex justify-between items-center p-4 bg-white shadow-lg border-b border-yellow-400">
-      <h1 class="text-2xl font-bold text-gray-800">Bienvenido al Dashboard</h1>
+    <header class="flex justify-between items-center p-5 bg-white border-b border-blue-300 shadow-md">
+      <h1 class="text-2xl font-extrabold text-gray-900 tracking-wide">
+        Dashboard <span class="text-blue-600">EasyDrive</span>
+      </h1>
     </header>
 
     <!-- Contenido central -->
-    <main class="flex-1 p-8 bg-gray-100">
+    <main class="flex-1 p-10 bg-gray-50">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-        <!-- Cards -->
-        <div class="bg-white shadow-lg rounded-xl p-6 border-l-4 border-yellow-400 transition hover:shadow-xl">
-          <div class="flex items-center justify-between">
-            <h2 class="text-xl font-semibold text-gray-800">Usuarios Activos</h2>
-            <i class="fas fa-users text-gray-400 text-2xl"></i>
+        <!-- Card 1 -->
+        <div class="bg-white rounded-2xl p-6 border border-blue-100 shadow-md hover:shadow-lg transition-all duration-300 hover:border-blue-300">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-lg font-bold text-gray-900 tracking-wide">Usuarios Activos</h2>
+            <i class="fa-solid fa-users text-blue-500 text-2xl"></i>
           </div>
-          <p class="text-gray-500 mt-2">1,245 registrados este mes.</p>
+          <p class="text-gray-500">1,245 registrados este mes.</p>
         </div>
 
-        <div class="bg-white shadow-lg rounded-xl p-6 border-l-4 border-yellow-400 transition hover:shadow-xl">
-          <div class="flex items-center justify-between">
-            <h2 class="text-xl font-semibold text-gray-800">Ventas</h2>
-            <i class="fas fa-dollar-sign text-gray-400 text-2xl"></i>
+        <!-- Card 2 -->
+        <div class="bg-white rounded-2xl p-6 border border-blue-100 shadow-md hover:shadow-lg transition-all duration-300 hover:border-blue-300">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-lg font-bold text-gray-900 tracking-wide">Ventas</h2>
+            <i class="fa-solid fa-dollar-sign text-blue-500 text-2xl"></i>
           </div>
-          <p class="text-gray-500 mt-2">$58,230 generados en 2025.</p>
+          <p class="text-gray-500">$58,230 generados en 2025.</p>
         </div>
 
-        <div class="bg-white shadow-lg rounded-xl p-6 border-l-4 border-yellow-400 transition hover:shadow-xl">
-          <div class="flex items-center justify-between">
-            <h2 class="text-xl font-semibold text-gray-800">Reportes</h2>
-            <i class="fas fa-file-alt text-gray-400 text-2xl"></i>
+        <!-- Card 3 -->
+        <div class="bg-white rounded-2xl p-6 border border-blue-100 shadow-md hover:shadow-lg transition-all duration-300 hover:border-blue-300">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-lg font-bold text-gray-900 tracking-wide">Reportes</h2>
+            <i class="fa-solid fa-file-lines text-blue-500 text-2xl"></i>
           </div>
-          <p class="text-gray-500 mt-2">Último generado hace 2h.</p>
+          <p class="text-gray-500">Último generado hace 2h.</p>
         </div>
 
       </div>

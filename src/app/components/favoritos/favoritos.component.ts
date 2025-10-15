@@ -1,4 +1,3 @@
-// favoritos.component.ts
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -22,107 +21,83 @@ interface AutoFavorito {
   standalone: true,
   imports: [CommonModule, RouterModule, DashboardMenuComponent],
   template: `
-<div class="flex min-h-screen bg-gray-900 text-white">
+<div class="flex min-h-screen bg-white text-gray-900">
 
-  <!-- Sidebar -->
-  <aside class="flex flex-col w-64 bg-gradient-to-b from-gray-800 to-gray-900 p-6 space-y-6 shadow-xl border-r border-yellow-500/20 rounded-tr-2xl rounded-br-2xl">
-    <div class="flex items-center justify-between">
-      <h2 class="text-2xl font-bold text-yellow-400 tracking-wide">Dashboard</h2>
-    </div>
-    <!-- Menú -->
-    <app-dashboard-menu class="flex-1 mt-6"></app-dashboard-menu>
-
-    <!-- Footer usuario -->
-    <div class="mt-auto text-gray-300 space-y-2">
-      <div *ngIf="user" class="font-semibold">
-        {{ user.nombre }} <span class="text-yellow-400 italic">({{ user.rol }})</span>
-      </div>
-      <button *ngIf="user"
-              (click)="logout()"
-              class="w-full py-2 px-3 rounded-lg bg-red-600 hover:bg-red-700 text-white font-semibold shadow-md transition-all">
-        Cerrar Sesión
-      </button>
-    </div>
-  </aside>
+  <!-- Menú lateral -->
+  <app-dashboard-menu class="w-64 bg-white shadow-md border-r border-gray-200"></app-dashboard-menu>
 
   <!-- Contenido principal -->
-  <div class="flex-1 flex flex-col bg-gray-100">
+  <div class="flex-1 p-10">
 
-    <!-- Header -->
-    <header class="flex justify-between items-center p-4 bg-gray-200 shadow-lg border-b border-yellow-400 rounded-b-xl">
-      <h1 class="text-2xl font-bold text-gray-800">Mis Favoritos ❤️</h1>
-      <a routerLink="/cerrar" 
-         class="text-gray-800 hover:text-yellow-500 transition flex items-center gap-2 font-semibold">
-        <i class="fas fa-sign-out-alt"></i> Cerrar
-      </a>
-    </header>
+    <h2 class="text-3xl font-bold text-gray-800 mb-8 border-b-4 border-blue-700 inline-block pb-2">
+      Mis Vehículos Favoritos
+    </h2>
 
-    <!-- Contenido central -->
-    <main class="flex-1 p-8 bg-gray-100">
-      <div *ngIf="favoritos.length === 0" class="text-center py-12">
-        <div class="text-gray-400 text-6xl mb-4">❤️</div>
-        <h3 class="text-xl font-semibold text-gray-600 mb-2">No tienes vehículos en favoritos</h3>
-        <p class="text-gray-500">Explora nuestro catálogo y agrega tus vehículos favoritos</p>
-      </div>
+    <!-- Si no hay favoritos -->
+    <div *ngIf="favoritos.length === 0" class="text-center py-20">
+      <img src="assets/bmw_logo.png" alt="BMW Logo" class="w-24 mx-auto mb-6 opacity-80">
+      <h3 class="text-2xl font-semibold text-gray-700 mb-2">No tienes vehículos en favoritos</h3>
+      <p class="text-gray-500">Explora el catálogo y agrega tus modelos BMW preferidos.</p>
+    </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        <div *ngFor="let auto of favoritos" 
-             class="bg-white rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 overflow-hidden border border-gray-200 group">
+    <!-- Lista de favoritos -->
+    <div *ngIf="favoritos.length > 0" 
+         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
 
-          <!-- Imagen auto -->
-          <div class="h-48 bg-gradient-to-br from-yellow-50 to-yellow-100 relative overflow-hidden">
-            <div class="absolute inset-0 flex items-center justify-center">
-              <div class="text-6xl opacity-20">🚗</div>
-            </div>
-            <div class="absolute top-4 right-4">
-              <span class="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-                Favorito
-              </span>
-            </div>
+      <div *ngFor="let auto of favoritos" 
+           class="bg-white rounded-2xl border border-gray-200 shadow-md hover:shadow-xl transition duration-300 overflow-hidden">
+
+        <!-- Imagen del vehículo -->
+        <div class="h-48 bg-gradient-to-b from-gray-100 to-gray-200 flex items-center justify-center relative">
+                    <!-- Imagen simulada (ícono de auto gris) -->
+          <div class="absolute inset-0 opacity-10 bg-[url('https://cdn-icons-png.flaticon.com/512/3202/3202926.png')] bg-center bg-no-repeat bg-contain"></div>
+        </div>
+
+        <!-- Información -->
+        <div class="p-6">
+          <h3 class="font-bold text-lg text-gray-900 mb-1">{{ auto.nombre }}</h3>
+          <p class="text-gray-500 text-sm mb-3">{{ auto.modelo }}</p>
+
+          <div class="flex items-center gap-2 mb-3">
+            <div class="w-4 h-4 rounded-full border border-gray-400"
+                 [style.background-color]="getColorHex(auto.color)"></div>
+            <span class="text-gray-600 text-sm capitalize">{{ auto.color }}</span>
           </div>
 
-          <!-- Info auto -->
-          <div class="p-6">
-            <h3 class="font-bold text-xl text-gray-900 mb-2">{{auto.nombre}}</h3>
-            <p class="text-gray-500 text-sm mb-3">{{auto.modelo}}</p>
+          <p class="text-blue-700 font-semibold text-xl mb-4">
+            {{ auto.precio | currency:'USD':'symbol':'1.0-0' }}
+          </p>
 
-            <div class="flex items-center gap-2 mb-3">
-              <div class="w-4 h-4 rounded-full border border-gray-300" [style.background-color]="getColorHex(auto.color)"></div>
-              <span class="text-gray-700 text-sm">{{auto.color}}</span>
-            </div>
+          <div class="flex gap-2">
+            <button (click)="comprarAuto(auto.vehiculo_id)"
+                    class="flex-1 bg-blue-700 hover:bg-blue-800 text-white py-2 px-4 rounded-lg font-semibold flex items-center justify-center gap-2 transition">
+              <i class="fas fa-shopping-cart"></i>
+              <span>Comprar</span>
+            </button>
 
-            <p class="text-green-600 font-bold text-xl mb-4">{{auto.precio | currency:'USD':'symbol':'1.0-0'}}</p>
-
-            <div class="flex gap-2">
-              <button (click)="comprarAuto(auto.vehiculo_id)" 
-                      class="flex-1 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white py-2.5 px-4 rounded-lg transition-all duration-200 font-semibold">
-                💰 Comprar
-              </button>
-              <button (click)="eliminarFavorito(auto.id)" 
-                      class="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white p-2.5 rounded-lg transition-all duration-200">
-                ❌
-              </button>
-            </div>
+            <button (click)="eliminarFavorito(auto.id)"
+                    class="bg-gray-200 hover:bg-gray-300 text-gray-700 p-2.5 rounded-lg transition">
+              <i class="fas fa-trash-alt"></i>
+            </button>
           </div>
-
         </div>
       </div>
+    </div>
 
-      <!-- Mensaje de alerta -->
-      <div *ngIf="mensaje" class="fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50" 
-           [class]="mensajeExito ? 'bg-green-500 text-white' : 'bg-red-500 text-white'">
-        {{mensaje}}
-      </div>
-
-    </main>
+    <!-- Mensaje de alerta -->
+    <div *ngIf="mensaje"
+         class="fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 font-medium"
+         [ngClass]="mensajeExito ? 'bg-blue-700 text-white' : 'bg-red-600 text-white'">
+      {{ mensaje }}
+    </div>
   </div>
 </div>
   `
 })
 export class FavoritosComponent implements OnInit {
   favoritos: AutoFavorito[] = [];
-  mensaje: string = '';
-  mensajeExito: boolean = false;
+  mensaje = '';
+  mensajeExito = false;
   usuarioId: number | null = null;
   user: any = null;
 
@@ -164,7 +139,7 @@ export class FavoritosComponent implements OnInit {
       return;
     }
 
-    if (confirm('¿Estás seguro de que deseas comprar este vehículo?')) {
+    if (confirm('¿Deseas comprar este vehículo BMW?')) {
       this.http.post('http://localhost:4000/api/compras', {
         usuario_id: this.usuarioId,
         vehiculo_id: autoId
@@ -185,7 +160,7 @@ export class FavoritosComponent implements OnInit {
       .subscribe({
         next: () => {
           this.favoritos = this.favoritos.filter(f => f.id !== favoritoId);
-          this.mostrarMensaje('Eliminado de favoritos', true);
+          this.mostrarMensaje('Vehículo eliminado de favoritos', true);
         },
         error: (error) => {
           console.error('Error eliminando favorito:', error);
@@ -202,12 +177,12 @@ export class FavoritosComponent implements OnInit {
 
   getColorHex(colorName: string): string {
     const colorMap: { [key: string]: string } = {
-      'rojo': '#dc2626', 'azul': '#2563eb', 'negro': '#000000', 'blanco': '#ffffff',
-      'gris': '#6b7280', 'plateado': '#c0c0c0', 'verde': '#16a34a', 'amarillo': '#eab308',
-      'naranja': '#ea580c', 'morado': '#9333ea', 'rosa': '#db2777', 'marron': '#92400e', 'beige': '#d6d3d1'
+      'rojo': '#c1121f', 'azul': '#0033a0', 'negro': '#000000', 'blanco': '#ffffff',
+      'gris': '#7a7a7a', 'plateado': '#b0b0b0', 'verde': '#007a3d', 'amarillo': '#ffcc00',
+      'naranja': '#ff6600', 'morado': '#4b0082', 'rosa': '#e75480', 'marron': '#5c4033', 'beige': '#d6d3d1'
     };
     const normalizedColor = colorName.toLowerCase().trim();
-    return colorMap[normalizedColor] || '#6b7280';
+    return colorMap[normalizedColor] || '#7a7a7a';
   }
 
   logout() {

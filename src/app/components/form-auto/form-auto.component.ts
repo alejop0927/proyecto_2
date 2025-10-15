@@ -1,4 +1,3 @@
-// form-auto.component.ts
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -10,48 +9,67 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <div class="p-6 max-w-4xl mx-auto">
-      <h2 class="text-2xl font-bold text-gray-800 mb-6">
-        {{ esEdicion ? 'Editar' : 'Agregar' }} Vehículo
-      </h2>
-
-      <form (ngSubmit)="guardarAuto()" class="bg-white p-6 rounded-lg shadow space-y-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-sm font-medium text-gray-700">Nombre</label>
-            <input type="text" [(ngModel)]="auto.nombre" name="nombre" 
-                   class="mt-1 block w-full border rounded px-3 py-2" required>
-          </div>
-          
-          <div>
-            <label class="block text-sm font-medium text-gray-700">Modelo</label>
-            <input type="text" [(ngModel)]="auto.modelo" name="modelo" 
-                   class="mt-1 block w-full border rounded px-3 py-2" required>
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium text-gray-700">Precio (USD)</label>
-            <input type="number" [(ngModel)]="auto.precio_usd" name="precio" 
-                   class="mt-1 block w-full border rounded px-3 py-2" required>
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium text-gray-700">Color</label>
-            <input type="text" [(ngModel)]="auto.color" name="color" 
-                   class="mt-1 block w-full border rounded px-3 py-2" required>
+    <div class="min-h-screen bg-white flex flex-col items-center py-10">
+      <div class="w-full max-w-4xl bg-white rounded-2xl shadow-2xl border border-gray-200 p-8">
+        
+        <!-- Encabezado -->
+        <div class="flex items-center justify-between mb-6 border-b pb-3">
+          <h2 class="text-3xl font-bold text-gray-900 tracking-tight">
+            {{ esEdicion ? 'Editar Vehículo' : 'Agregar Vehículo' }}
+          </h2>
+          <div class="flex items-center space-x-2">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg" 
+                 alt="BMW" class="h-10 w-10">
           </div>
         </div>
 
-        <div class="flex space-x-4 pt-4">
-          <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-            {{ esEdicion ? 'Actualizar' : 'Guardar' }}
-          </button>
-          <button type="button" (click)="cancelar()" 
-                  class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
-            Cancelar
-          </button>
-        </div>
-      </form>
+        <!-- Formulario -->
+        <form (ngSubmit)="guardarAuto()" class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700">Nombre</label>
+              <input type="text" [(ngModel)]="auto.nombre" name="nombre"
+                     class="mt-1 block w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-700"
+                     required>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700">Modelo</label>
+              <input type="text" [(ngModel)]="auto.modelo" name="modelo"
+                     class="mt-1 block w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-700"
+                     required>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700">Precio (USD)</label>
+              <input type="number" [(ngModel)]="auto.precio_usd" name="precio"
+                     class="mt-1 block w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-700"
+                     required>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700">Color</label>
+              <input type="text" [(ngModel)]="auto.color" name="color"
+                     class="mt-1 block w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-700"
+                     required>
+            </div>
+          </div>
+
+          <!-- Botones -->
+          <div class="flex justify-end space-x-4 pt-6">
+            <button type="button" (click)="cancelar()"
+                    class="px-5 py-2 rounded-lg bg-gray-800 text-white font-semibold hover:bg-black transition">
+              Cancelar
+            </button>
+
+            <button type="submit"
+                    class="px-6 py-2 rounded-lg bg-blue-700 text-white font-semibold hover:bg-blue-800 transition">
+              {{ esEdicion ? 'Actualizar' : 'Guardar' }}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   `
 })
@@ -95,19 +113,19 @@ export class FormAutoComponent implements OnInit {
       this.http.put(`http://localhost:4000/api/autos/${this.autoId}`, this.auto, { headers })
         .subscribe({
           next: () => {
-            alert('Vehículo actualizado');
+            alert('Vehículo actualizado correctamente');
             this.router.navigate(['/autos/lista']);
           },
-          error: (error) => console.error('Error:', error)
+          error: (error) => console.error('Error al actualizar:', error)
         });
     } else {
       this.http.post('http://localhost:4000/api/autos', this.auto)
         .subscribe({
           next: () => {
-            alert('Vehículo agregado');
+            alert('Vehículo agregado correctamente');
             this.router.navigate(['/autos/lista']);
           },
-          error: (error) => console.error('Error:', error)
+          error: (error) => console.error('Error al agregar:', error)
         });
     }
   }

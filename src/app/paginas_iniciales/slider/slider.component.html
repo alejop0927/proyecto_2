@@ -1,70 +1,129 @@
-<div class="container mx-auto px-4 py-12">
-    <!-- Encabezado -->
-    <header class="text-center mb-8">
-        <h2 class="text-4xl font-extrabold text-yellow-400 mb-2">Vehículos Destacados</h2>
-        <p class="text-gray-300 text-lg max-w-2xl mx-auto">
-            Explora nuestra colección exclusiva de autos premium.
-        </p>
-    </header>
+<div class="container mx-auto px-4 py-16 bg-[#0A0A0A] rounded-2xl">
+  <!-- Encabezado -->
+  <header class="text-center mb-12">
+    <h2 class="text-4xl font-bold text-white mb-4">
+      Vehículos <span class="text-[#0066B1]">Destacados</span>
+    </h2>
+    <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+      Descubre nuestra exclusiva colección de autos premium y de alta gama.
+    </p>
+  </header>
 
-    <!-- Slider simple -->
-    <div class="flex overflow-x-auto space-x-6 py-6 snap-x snap-mandatory scrollbar-hide">
-        <!-- Tarjeta 1 -->
-        <div class="car-card min-w-[250px] flex-shrink-0 snap-center bg-gray-800 rounded-xl overflow-hidden transform transition-transform duration-300 hover:scale-105">
-            <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1170&q=80" class="w-full h-40 object-cover">
-            <div class="p-4 text-white">
-                <span class="text-yellow-400 text-sm font-semibold">DEPORTIVO</span>
-                <h3 class="text-lg font-bold mt-1">Aston Martin Vantage</h3>
-                <p class="text-gray-300 text-sm">$145,000</p>
-            </div>
+  <!-- Slider estilo BMW -->
+  <div class="relative">
+    <div class="flex overflow-x-auto space-x-6 py-6 px-2 snap-x snap-mandatory scrollbar-hide">
+      
+      <!-- Tarjeta -->
+      <div class="car-card min-w-[280px] flex-shrink-0 snap-center bg-[#1C1C1E] rounded-2xl overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(0,102,177,0.3)] border border-gray-700">
+        <div class="relative">
+          <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1170&q=80"
+               class="w-full h-48 object-cover" alt="Aston Martin Vantage">
+          <div class="absolute top-4 left-4">
+            <span class="bg-[#0066B1] text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
+              DEPORTIVO
+            </span>
+          </div>
         </div>
+        <div class="p-5">
+          <h3 class="text-xl font-bold text-white mb-2">Aston Martin Vantage</h3>
+          <p class="text-[#0066B1] text-lg font-semibold mb-3">$145,000</p>
+          <div class="flex items-center text-gray-400 text-sm mb-4">
+            <span class="mr-4">★ 4.8</span>
+            <span>• 12,000 km</span>
+          </div>
+          <button class="w-full border-2 border-[#0066B1] text-[#0066B1] py-2 rounded-lg font-semibold hover:bg-[#0066B1] hover:text-white transition-all duration-300">
+            Ver Detalles
+          </button>
+        </div>
+      </div>
 
-        <!-- Tarjeta 2 -->
-        <div class="car-card min-w-[250px] flex-shrink-0 snap-center bg-gray-800 rounded-xl overflow-hidden transform transition-transform duration-300 hover:scale-105">
-            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1170&q=80" class="w-full h-40 object-cover">
-            <div class="p-4 text-white">
-                <span class="text-teal-400 text-sm font-semibold">SUV</span>
-                <h3 class="text-lg font-bold mt-1">Range Rover Sport</h3>
-                <p class="text-gray-300 text-sm">$89,000</p>
-            </div>
+      <!-- Repite este mismo formato para las demás tarjetas cambiando los datos -->
+      <!-- SUV -->
+      <div class="car-card min-w-[280px] flex-shrink-0 snap-center bg-[#1C1C1E] rounded-2xl overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(0,102,177,0.3)] border border-gray-700">
+        <div class="relative">
+          <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1170&q=80"
+               class="w-full h-48 object-cover" alt="Range Rover Sport">
+          <div class="absolute top-4 left-4">
+            <span class="bg-[#0066B1] text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
+              SUV
+            </span>
+          </div>
         </div>
+        <div class="p-5">
+          <h3 class="text-xl font-bold text-white mb-2">Range Rover Sport</h3>
+          <p class="text-[#0066B1] text-lg font-semibold mb-3">$89,000</p>
+          <div class="flex items-center text-gray-400 text-sm mb-4">
+            <span class="mr-4">★ 4.6</span>
+            <span>• 8,500 km</span>
+          </div>
+          <button class="w-full border-2 border-[#0066B1] text-[#0066B1] py-2 rounded-lg font-semibold hover:bg-[#0066B1] hover:text-white transition-all duration-300">
+            Ver Detalles
+          </button>
+        </div>
+      </div>
 
-        <!-- Tarjeta 3 -->
-        <div class="car-card min-w-[250px] flex-shrink-0 snap-center bg-gray-800 rounded-xl overflow-hidden transform transition-transform duration-300 hover:scale-105">
-            <img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1171&q=80" class="w-full h-40 object-cover">
-            <div class="p-4 text-white">
-                <span class="text-emerald-400 text-sm font-semibold">ELÉCTRICO</span>
-                <h3 class="text-lg font-bold mt-1">Tesla Model S Plaid</h3>
-                <p class="text-gray-300 text-sm">$109,000</p>
-            </div>
+      <!-- Tesla -->
+      <div class="car-card min-w-[280px] flex-shrink-0 snap-center bg-[#1C1C1E] rounded-2xl overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(0,102,177,0.3)] border border-gray-700">
+        <div class="relative">
+          <img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1171&q=80"
+               class="w-full h-48 object-cover" alt="Tesla Model S Plaid">
+          <div class="absolute top-4 left-4">
+            <span class="bg-[#0066B1] text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
+              ELÉCTRICO
+            </span>
+          </div>
         </div>
+        <div class="p-5">
+          <h3 class="text-xl font-bold text-white mb-2">Tesla Model S Plaid</h3>
+          <p class="text-[#0066B1] text-lg font-semibold mb-3">$109,000</p>
+          <div class="flex items-center text-gray-400 text-sm mb-4">
+            <span class="mr-4">★ 4.9</span>
+            <span>• 6,200 km</span>
+          </div>
+          <button class="w-full border-2 border-[#0066B1] text-[#0066B1] py-2 rounded-lg font-semibold hover:bg-[#0066B1] hover:text-white transition-all duration-300">
+            Ver Detalles
+          </button>
+        </div>
+      </div>
 
-        <!-- Tarjeta 4 -->
-        <div class="car-card min-w-[250px] flex-shrink-0 snap-center bg-gray-800 rounded-xl overflow-hidden transform transition-transform duration-300 hover:scale-105">
-            <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1170&q=80" class="w-full h-40 object-cover">
-            <div class="p-4 text-white">
-                <span class="text-amber-400 text-sm font-semibold">CLÁSICO</span>
-                <h3 class="text-lg font-bold mt-1">Porsche 911</h3>
-                <p class="text-gray-300 text-sm">$275,000</p>
-            </div>
+      <!-- Clásico -->
+      <div class="car-card min-w-[280px] flex-shrink-0 snap-center bg-[#1C1C1E] rounded-2xl overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(0,102,177,0.3)] border border-gray-700">
+        <div class="relative">
+          <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1170&q=80"
+               class="w-full h-48 object-cover" alt="Porsche 911">
+          <div class="absolute top-4 left-4">
+            <span class="bg-[#0066B1] text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
+              CLÁSICO
+            </span>
+          </div>
         </div>
+        <div class="p-5">
+          <h3 class="text-xl font-bold text-white mb-2">Porsche 911</h3>
+          <p class="text-[#0066B1] text-lg font-semibold mb-3">$275,000</p>
+          <div class="flex items-center text-gray-400 text-sm mb-4">
+            <span class="mr-4">★ 4.7</span>
+            <span>• 15,300 km</span>
+          </div>
+          <button class="w-full border-2 border-[#0066B1] text-[#0066B1] py-2 rounded-lg font-semibold hover:bg-[#0066B1] hover:text-white transition-all duration-300">
+            Ver Detalles
+          </button>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <!-- Botón Ver Más debajo del slider -->
-    <div class="text-center mt-8">
-        <a routerLink="/catalogo" class="inline-block px-8 py-3 font-bold text-black bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-xl shadow-lg hover:from-yellow-500 hover:to-yellow-700 transition transform hover:scale-105">
-            Ver más vehículos
-        </a>
-    </div>
+  <!-- Botón Ver Más -->
+  <div class="text-center mt-12">
+    <a routerLink="/catalogo" class="inline-flex items-center px-8 py-4 bg-[#0066B1] text-white font-bold rounded-xl shadow-lg hover:bg-[#007BFF] transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_25px_rgba(0,123,255,0.4)]">
+      <span>Explorar Catálogo Completo</span>
+      <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+      </svg>
+    </a>
+  </div>
 </div>
 
 <style>
-/* Esconder scrollbar en todos los navegadores */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-.scrollbar-hide {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-}
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 </style>

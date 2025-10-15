@@ -1,66 +1,77 @@
-<aside class="bg-gray-900 text-white w-64 min-h-screen flex flex-col shadow-xl border-r border-gray-800">
+<aside class="bg-gradient-to-b from-[#0a0a0a] via-[#0f172a] to-black text-gray-200 w-64 min-h-screen flex flex-col shadow-2xl border-r border-blue-900/40">
   <!-- Logo -->
-  <div class="p-6 font-bold text-yellow-400 text-3xl border-b border-gray-800 flex items-center justify-center tracking-wide">
-    EasyDrive
+  <div class="p-6 text-center border-b border-blue-900/40">
+    <h1 class="font-extrabold text-3xl tracking-wide">
+      <span class="text-white">Easy</span><span class="text-blue-500">Drive</span>
+    </h1>
+    <p class="text-xs text-gray-400 tracking-widest mt-1 uppercase">Precision & Performance</p>
   </div>
 
   <!-- Navegación -->
-  <nav class="flex-1 mt-6 px-4 space-y-3">
+  <nav class="flex-1 mt-6 px-4 space-y-3 font-semibold text-[15px]">
     <a routerLink="/catalogo-mejorado"
-       class="block w-full px-4 py-3 rounded-xl bg-gray-800 hover:bg-gray-700 text-white font-semibold text-lg shadow-sm transition-all duration-200">
-      🚗 Catálogo
+       class="flex items-center gap-3 px-4 py-3 rounded-xl bg-gray-800/50 hover:bg-blue-900/40 text-gray-200 shadow-sm transition-all duration-300 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]">
+      <i class="fa-solid fa-car text-blue-400"></i>
+      <span>Catálogo</span>
     </a>
 
     <a routerLink="/favoritos"
-       class="block w-full px-4 py-3 rounded-xl bg-gray-800 hover:bg-gray-700 text-white font-semibold text-lg shadow-sm transition-all duration-200">
-      ❤️ Mis Favoritos
+       class="flex items-center gap-3 px-4 py-3 rounded-xl bg-gray-800/50 hover:bg-blue-900/40 text-gray-200 shadow-sm transition-all duration-300 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]">
+      <i class="fa-solid fa-heart text-blue-400"></i>
+      <span>Mis Favoritos</span>
     </a>
 
     <a routerLink="/carrito"
-       class="block w-full px-4 py-3 rounded-xl bg-gray-800 hover:bg-gray-700 text-white font-semibold text-lg shadow-sm transition-all duration-200">
-      🛒 Mi Carrito
+       class="flex items-center gap-3 px-4 py-3 rounded-xl bg-gray-800/50 hover:bg-blue-900/40 text-gray-200 shadow-sm transition-all duration-300 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]">
+      <i class="fa-solid fa-cart-shopping text-blue-400"></i>
+      <span>Mi Carrito</span>
     </a>
 
-    <!-- 🔹 Nuevo botón visible para todos -->
     <a routerLink="/financiacion"
-       class="block w-full px-4 py-3 rounded-xl bg-gray-800 hover:bg-gray-700 text-white font-semibold text-lg shadow-sm transition-all duration-200">
-      💵 Simulador de Financiación
+       class="flex items-center gap-3 px-4 py-3 rounded-xl bg-gray-800/50 hover:bg-blue-900/40 text-gray-200 shadow-sm transition-all duration-300 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]">
+      <i class="fa-solid fa-hand-holding-dollar text-blue-400"></i>
+      <span>Simulador de Financiación</span>
     </a>
 
     <!-- Opciones solo para admin -->
     <ng-container *ngIf="user?.rol === 'admin'">
       <a routerLink="/autos/nuevo"
-         class="block w-full px-4 py-3 rounded-xl bg-yellow-700 hover:bg-yellow-600 text-black font-semibold text-lg shadow-sm transition-all duration-200">
-        ➕ Agregar Auto
+         class="flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-blue-800 to-blue-900 hover:from-blue-700 hover:to-blue-800 text-white shadow-md transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)]">
+        <i class="fa-solid fa-plus text-gray-100"></i>
+        <span>Agregar Auto</span>
       </a>
 
       <a routerLink="/ventas/registrar"
-         class="block w-full px-4 py-3 rounded-xl bg-yellow-700 hover:bg-yellow-600 text-black font-semibold text-lg shadow-sm transition-all duration-200">
-        💰 Registrar Venta
+         class="flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-blue-800 to-blue-900 hover:from-blue-700 hover:to-blue-800 text-white shadow-md transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)]">
+        <i class="fa-solid fa-sack-dollar text-gray-100"></i>
+        <span>Registrar Venta</span>
       </a>
 
       <a routerLink="/autos/lista"
-         class="block w-full px-4 py-3 rounded-xl bg-yellow-700 hover:bg-yellow-600 text-black font-semibold text-lg shadow-sm transition-all duration-200">
-        📋 Lista de Autos
+         class="flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-blue-800 to-blue-900 hover:from-blue-700 hover:to-blue-800 text-white shadow-md transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)]">
+        <i class="fa-solid fa-clipboard-list text-gray-100"></i>
+        <span>Lista de Autos</span>
       </a>
 
       <a routerLink="/gestionar-usuarios"
-         class="block w-full px-4 py-3 rounded-xl bg-purple-700 hover:bg-purple-600 text-white font-semibold text-lg shadow-sm transition-all duration-200">
-        👥 Gestionar Usuarios
+         class="flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-blue-700 to-indigo-800 hover:from-blue-600 hover:to-indigo-700 text-white shadow-md transition-all duration-300 hover:shadow-[0_0_20px_rgba(99,102,241,0.6)]">
+        <i class="fa-solid fa-users-gear text-gray-100"></i>
+        <span>Gestionar Usuarios</span>
       </a>
     </ng-container>
   </nav>
 
   <!-- Footer usuario -->
-  <div class="p-4 border-t border-gray-800 text-sm flex flex-col space-y-3 bg-gray-800 mt-auto">
-    <div *ngIf="user" class="text-gray-300">
-      <span class="font-bold">{{ user.nombre }}</span>
-      <span class="italic text-yellow-400">({{ user.rol }})</span>
+  <div class="p-5 border-t border-blue-900/40 bg-[#0b0b0f]/80 mt-auto flex flex-col space-y-3 text-sm">
+    <div *ngIf="user" class="text-gray-300 text-center">
+      <span class="font-bold text-white block">{{ user.nombre }}</span>
+      <span class="italic text-blue-400">({{ user.rol }})</span>
     </div>
+
     <button *ngIf="user"
             (click)="logout()"
-            class="w-full py-2 px-3 rounded-lg bg-red-600 hover:bg-red-700 text-white font-semibold shadow-sm transition-all">
-      Cerrar Sesión
+            class="w-full py-2 px-3 rounded-lg bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-600 hover:to-blue-800 text-white font-semibold shadow-md transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.6)] active:scale-95">
+      <i class="fa-solid fa-power-off mr-2"></i> Cerrar Sesión
     </button>
   </div>
 </aside>

@@ -9,125 +9,131 @@ import { DashboardMenuComponent } from '../dashboard/menu/menu.component';
   standalone: true,
   imports: [CommonModule, FormsModule, DashboardMenuComponent],
   template: `
-    <div class="min-h-screen bg-gradient-to-br from-gray-100 to-gray-50 flex">
+    <div class="min-h-screen bg-white flex">
       <!-- Menú lateral -->
-      <div class="w-64 flex-shrink-0">
+      <div class="w-64 flex-shrink-0 bg-white border-r border-gray-200">
         <app-dashboard-menu></app-dashboard-menu>
       </div>
 
       <!-- Contenido principal -->
-      <div class="flex-1 p-4 overflow-auto">
-        <div class="max-w-3xl mx-auto">
-          <div class="bg-gray-900 text-white p-6 rounded-2xl shadow-xl border border-gray-800">
-            <h2 class="text-2xl font-bold text-yellow-400 mb-4 text-center">Agregar Nuevo Vehículo</h2>
+      <div class="flex-1 p-8 overflow-auto">
+        <div class="max-w-4xl mx-auto bg-white border border-gray-200 rounded-3xl shadow-2xl p-8">
+          <h2 class="text-3xl font-extrabold text-gray-900 mb-6 text-center tracking-tight">
+            <span class="text-blue-700">BMW</span> - Agregar Nuevo Vehículo
+          </h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-              <!-- Columna 1 -->
-              <div class="space-y-2">
-                <div>
-                  <label class="block text-sm font-semibold mb-1">Nombre</label>
-                  <input type="text" [(ngModel)]="nombre" class="w-full p-2 text-sm rounded bg-gray-800 text-white border border-gray-700" />
-                </div>
-
-                <div>
-                  <label class="block text-sm font-semibold mb-1">Precio</label>
-                  <input type="number" [(ngModel)]="precio" class="w-full p-2 text-sm rounded bg-gray-800 text-white border border-gray-700" />
-                </div>
-
-                <div>
-                  <label class="block text-sm font-semibold mb-1">Fecha Fabricación</label>
-                  <input type="date" [(ngModel)]="fechaFabricacion" class="w-full p-2 text-sm rounded bg-gray-800 text-white border border-gray-700" />
-                </div>
-
-                <div>
-                  <label class="block text-sm font-semibold mb-1">Motor</label>
-                  <input type="text" [(ngModel)]="motor" class="w-full p-2 text-sm rounded bg-gray-800 text-white border border-gray-700" />
-                </div>
-
-                <div>
-                  <label class="block text-sm font-semibold mb-1">Combustible</label>
-                  <input type="text" [(ngModel)]="tipoCombustible" class="w-full p-2 text-sm rounded bg-gray-800 text-white border border-gray-700" />
-                </div>
-              </div>
-
-              <!-- Columna 2 -->
-              <div class="space-y-2">
-                <div>
-                  <label class="block text-sm font-semibold mb-1">Modelo</label>
-                  <input type="text" [(ngModel)]="modelo" class="w-full p-2 text-sm rounded bg-gray-800 text-white border border-gray-700" />
-                </div>
-
-                <div>
-                  <label class="block text-sm font-semibold mb-1">Color</label>
-                  <input type="text" [(ngModel)]="color" class="w-full p-2 text-sm rounded bg-gray-800 text-white border border-gray-700" />
-                </div>
-
-                <div>
-                  <label class="block text-sm font-semibold mb-1">País</label>
-                  <input type="text" [(ngModel)]="paisFabricacion" class="w-full p-2 text-sm rounded bg-gray-800 text-white border border-gray-700" />
-                </div>
-
-                <div>
-                  <label class="block text-sm font-semibold mb-1">Transmisión</label>
-                  <input type="text" [(ngModel)]="transmision" class="w-full p-2 text-sm rounded bg-gray-800 text-white border border-gray-700" />
-                </div>
-
-                <div>
-                  <label class="block text-sm font-semibold mb-1">Carrocería</label>
-                  <input type="text" [(ngModel)]="tipoCarroceria" class="w-full p-2 text-sm rounded bg-gray-800 text-white border border-gray-700" />
-                </div>
-              </div>
-
-              <!-- Columna 3 -->
-              <div class="space-y-2">
-                <div>
-                  <label class="block text-sm font-semibold mb-1">Puertas</label>
-                  <input type="number" [(ngModel)]="numPuertas" class="w-full p-2 text-sm rounded bg-gray-800 text-white border border-gray-700" />
-                </div>
-
-                <div>
-                  <label class="block text-sm font-semibold mb-1">Pasajeros</label>
-                  <input type="number" [(ngModel)]="capacidadPasajeros" class="w-full p-2 text-sm rounded bg-gray-800 text-white border border-gray-700" />
-                </div>
-
-                <div>
-                  <label class="block text-sm font-semibold mb-1">Velocidades</label>
-                  <input type="number" [(ngModel)]="velocidades" class="w-full p-2 text-sm rounded bg-gray-800 text-white border border-gray-700" />
-                </div>
-
-                <div>
-                  <label class="block text-sm font-semibold mb-1">RPM</label>
-                  <input type="number" [(ngModel)]="rpm" class="w-full p-2 text-sm rounded bg-gray-800 text-white border border-gray-700" />
-                </div>
-
-                <div>
-                  <label class="block text-sm font-semibold mb-1">Imagen</label>
-                  <input type="text" [(ngModel)]="imagen" class="w-full p-2 text-sm rounded bg-gray-800 text-white border border-gray-700" />
-                </div>
-              </div>
-            </div>
-
-            <!-- Campos adicionales compactos -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
+          <!-- Formulario -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Columna 1 -->
+            <div class="space-y-3">
               <div>
-                <label class="block text-sm font-semibold mb-1">Consumo</label>
-                <input type="number" [(ngModel)]="consumo" class="w-full p-2 text-sm rounded bg-gray-800 text-white border border-gray-700" />
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Nombre</label>
+                <input type="text" [(ngModel)]="nombre" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none" />
               </div>
 
               <div>
-                <label class="block text-sm font-semibold mb-1">Emisiones CO2</label>
-                <input type="number" [(ngModel)]="emisionesCo2" class="w-full p-2 text-sm rounded bg-gray-800 text-white border border-gray-700" />
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Precio (USD)</label>
+                <input type="number" [(ngModel)]="precio" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Fecha de Fabricación</label>
+                <input type="date" [(ngModel)]="fechaFabricacion" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Motor</label>
+                <input type="text" [(ngModel)]="motor" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Combustible</label>
+                <input type="text" [(ngModel)]="tipoCombustible" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none" />
               </div>
             </div>
 
-            <button (click)="agregarAuto()"
-                    class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 rounded transition text-sm mt-4">
-              Agregar Vehículo
-            </button>
+            <!-- Columna 2 -->
+            <div class="space-y-3">
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Modelo</label>
+                <input type="text" [(ngModel)]="modelo" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+              </div>
 
-            <p class="mt-3 text-center text-green-500 font-semibold text-sm" *ngIf="mensajeExito">{{ mensajeExito }}</p>
-            <p class="mt-3 text-center text-red-500 font-semibold text-sm" *ngIf="mensajeError">{{ mensajeError }}</p>
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Color</label>
+                <input type="text" [(ngModel)]="color" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">País</label>
+                <input type="text" [(ngModel)]="paisFabricacion" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Transmisión</label>
+                <input type="text" [(ngModel)]="transmision" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Carrocería</label>
+                <input type="text" [(ngModel)]="tipoCarroceria" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+              </div>
+            </div>
+
+            <!-- Columna 3 -->
+            <div class="space-y-3">
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Puertas</label>
+                <input type="number" [(ngModel)]="numPuertas" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Pasajeros</label>
+                <input type="number" [(ngModel)]="capacidadPasajeros" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Velocidades</label>
+                <input type="number" [(ngModel)]="velocidades" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">RPM</label>
+                <input type="number" [(ngModel)]="rpm" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Imagen (URL)</label>
+                <input type="text" [(ngModel)]="imagen" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+              </div>
+            </div>
           </div>
+
+          <!-- Campos adicionales -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-1">Consumo (km/l)</label>
+              <input type="number" [(ngModel)]="consumo" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-1">Emisiones CO₂ (g/km)</label>
+              <input type="number" [(ngModel)]="emisionesCo2" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none" />
+            </div>
+          </div>
+
+          <!-- Botón principal -->
+          <button (click)="agregarAuto()"
+                  class="w-full bg-gradient-to-r from-blue-700 to-gray-800 hover:from-blue-800 hover:to-black text-white font-semibold py-3 rounded-xl shadow-lg mt-6 transition-all">
+            <span class="flex items-center justify-center gap-2">
+             
+              Agregar Vehículo
+            </span>
+          </button>
+
+          <!-- Mensajes -->
+          <p class="mt-4 text-center text-green-600 font-medium" *ngIf="mensajeExito">{{ mensajeExito }}</p>
+          <p class="mt-4 text-center text-red-600 font-medium" *ngIf="mensajeError">{{ mensajeError }}</p>
         </div>
       </div>
     </div>
@@ -180,11 +186,11 @@ export class FormularioAutoComponent {
       imagen: this.imagen
     }).subscribe({
       next: () => {
-        this.mensajeExito = 'Vehículo agregado';
+        this.mensajeExito = '🚗 Vehículo agregado exitosamente';
         this.limpiarFormulario();
       },
-      error: (error) => {
-        this.mensajeError = 'Error al agregar';
+      error: () => {
+        this.mensajeError = '❌ Error al agregar el vehículo';
       }
     });
   }

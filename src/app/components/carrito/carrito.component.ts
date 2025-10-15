@@ -1,8 +1,8 @@
-// carrito.component.ts (CORREGIDO)
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { DashboardMenuComponent } from '../../dashboard/menu/menu.component';
 
 interface ItemCarrito {
   id: number;
@@ -15,76 +15,94 @@ interface ItemCarrito {
 @Component({
   selector: 'app-carrito',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, DashboardMenuComponent],
   template: `
-    <div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
-      <div class="max-w-4xl mx-auto">
-        <h2 class="text-3xl font-bold text-gray-900 mb-8">🛒 Mi Carrito</h2>
+  <div class="flex min-h-screen bg-white font-sans text-gray-900">
 
-        <div *ngIf="carritoItems.length === 0" class="text-center py-12 bg-white rounded-2xl shadow-lg">
-          <div class="text-gray-400 text-6xl mb-4">🛒</div>
-          <h3 class="text-xl font-semibold text-gray-600 mb-2">Tu carrito está vacío</h3>
-          <p class="text-gray-500 mb-4">Agrega algunos vehículos desde nuestro catálogo</p>
-          <button (click)="irAlCatalogo()" 
-                  class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition-colors">
-            Explorar Catálogo
+    <!-- Sidebar BMW -->
+    <aside class="hidden lg:flex flex-col w-64 bg-[#0A0A0A] text-white shadow-2xl">
+      <app-dashboard-menu class="flex-1 mt-6"></app-dashboard-menu>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="flex-1 p-8 bg-gradient-to-b from-white to-gray-50">
+      <h2 class="text-3xl font-bold text-gray-900 mb-10 flex items-center gap-3 border-b border-gray-200 pb-4">
+        <i class="fa-solid fa-cart-shopping text-[#003366] text-2xl"></i>
+        Mi Carrito
+      </h2>
+
+      <!-- Carrito vacío -->
+      <section *ngIf="carritoItems.length === 0" 
+               class="text-center py-20 bg-gray-50 rounded-2xl shadow-inner border border-gray-200">
+       
+           
+        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Tu carrito está vacío</h3>
+        <p class="text-gray-500 mb-6">Explora nuestro catálogo  EasyDrive y agrega tus modelos favoritos.</p>
+        <button (click)="irAlCatalogo()" 
+                class="bg-[#003366] hover:bg-[#1a4a7a] text-white px-6 py-3 rounded-lg font-semibold shadow-md transition">
+          <i class="fa-solid fa-car text-white mr-2"></i> Explorar Catálogo
+        </button>
+      </section>
+
+      <!-- Carrito con ítems -->
+      <section *ngIf="carritoItems.length > 0" class="space-y-6">
+        <div *ngFor="let item of carritoItems; let i = index"
+             class="bg-white rounded-xl shadow-md p-6 flex items-center gap-5 border border-gray-200 hover:shadow-xl transition relative overflow-hidden">
+
+          <!-- Imagen decorativa -->
+                 
+          <div class="flex-1">
+            <h3 class="font-bold text-lg text-gray-900">{{ item.Nombre }}</h3>
+            <p class="text-gray-600">{{ item.Modelo }} - {{ item.Color }}</p>
+            <p class="text-[#003366] font-bold text-xl mt-2">
+              {{ item.Precio | currency:'USD':'symbol':'1.0-0' }}
+            </p>
+          </div>
+
+          <!-- Botón eliminar -->
+          <button (click)="eliminarDelCarrito(i)"
+                  class="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-4 py-2 rounded-lg font-semibold shadow transition">
+            <i class="fa-solid fa-trash-can mr-2"></i> Eliminar
           </button>
         </div>
 
-        <div *ngIf="carritoItems.length > 0" class="space-y-4">
-          <!-- Items del carrito -->
-          <div *ngFor="let item of carritoItems; let i = index" 
-               class="bg-white rounded-2xl shadow-lg p-6 flex items-center gap-4">
-            
-            <div class="w-24 h-24 bg-gradient-to-br from-blue-50 to-gray-100 rounded-lg flex items-center justify-center">
-              <span class="text-2xl opacity-60">🚗</span>
-            </div>
-          
-            <div class="flex-1">
-              <h3 class="font-bold text-lg text-gray-900">{{item.Nombre}}</h3>
-              <p class="text-gray-600">{{item.Modelo}} - {{item.Color}}</p>
-              <p class="text-green-600 font-bold text-xl mt-2">{{item.Precio | currency:'USD':'symbol':'1.0-0'}}</p>
-            </div>
+        <!-- Resumen total -->
+        <div class="bg-gray-50 rounded-2xl shadow-inner border border-gray-200 p-6 mt-10">
+          <div class="flex justify-between items-center mb-6">
+            <span class="text-xl font-semibold text-gray-800">Total:</span>
+            <span class="text-3xl font-bold text-[#003366]">
+              {{ total | currency:'USD':'symbol':'1.0-0' }}
+            </span>
+          </div>
 
-            <button (click)="eliminarDelCarrito(i)" 
-                    class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-colors">
-              ❌ Eliminar
+          <div class="flex flex-col sm:flex-row gap-4">
+            <button (click)="seguirComprando()"
+                    class="flex-1 bg-gray-700 hover:bg-gray-800 text-white py-3 rounded-lg font-semibold transition">
+              <i class="fa-solid fa-arrow-left mr-2"></i> Seguir Comprando
+            </button>
+            <button (click)="comprarTodo()"
+                    class="flex-1 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white py-3 rounded-lg font-semibold transition">
+              <i class="fa-solid fa-credit-card mr-2"></i> Comprar Todo
             </button>
           </div>
-
-          <!-- Resumen y pago -->
-          <div class="bg-white rounded-2xl shadow-lg p-6">
-            <div class="flex justify-between items-center mb-6">
-              <span class="text-xl font-semibold text-gray-900">Total:</span>
-              <span class="text-3xl font-bold text-green-600">{{total | currency:'USD':'symbol':'1.0-0'}}</span>
-            </div>
-            
-            <div class="flex gap-4">
-              <button (click)="seguirComprando()" 
-                      class="flex-1 bg-gray-500 hover:bg-gray-600 text-white py-3 rounded-lg transition-colors font-semibold">
-                ← Seguir Comprando
-              </button>
-              <button (click)="comprarTodo()" 
-                      class="flex-1 bg-green-500 hover:bg-green-600 text-white py-3 rounded-lg transition-colors font-semibold">
-                💰 Comprar Todo
-              </button>
-            </div>
-          </div>
         </div>
+      </section>
 
-        <!-- Mensaje de confirmación -->
-        <div *ngIf="mensaje" class="fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50" 
-             [class]="mensajeExito ? 'bg-green-500 text-white' : 'bg-red-500 text-white'">
-          {{mensaje}}
-        </div>
+      <!-- Mensaje flotante -->
+      <div *ngIf="mensaje"
+           class="fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 flex items-center gap-2"
+           [class]="mensajeExito ? 'bg-green-600 text-white' : 'bg-red-600 text-white'">
+        <i class="fa-solid" [ngClass]="mensajeExito ? 'fa-check-circle' : 'fa-circle-exclamation'"></i>
+        {{ mensaje }}
       </div>
-    </div>
+    </main>
+  </div>
   `
 })
 export class CarritoComponent implements OnInit {
   carritoItems: ItemCarrito[] = [];
-  mensaje: string = '';
-  mensajeExito: boolean = false;
+  mensaje = '';
+  mensajeExito = false;
   usuarioId: number | null = null;
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -142,30 +160,17 @@ export class CarritoComponent implements OnInit {
       minimumFractionDigits: 0
     });
 
-    if (confirm(`¿Estás seguro de que deseas comprar ${cantidadVehiculos} vehículo(s) por un total de ${totalFormateado}?`)) {
+    if (confirm(`¿Deseas comprar ${cantidadVehiculos} vehículo(s) por un total de ${totalFormateado}?`)) {
       try {
-        // Guardar la cantidad antes de vaciar el carrito
-        const cantidad = this.carritoItems.length;
-        
-        // Procesar cada item del carrito con estado "comprado"
         for (const item of this.carritoItems) {
           await this.registrarCompra(item);
         }
-
-        // Vaciar carrito después de procesar todo
         this.carritoItems = [];
         this.guardarCarrito();
-        
-        // Mostrar mensaje con la cantidad correcta
-        this.mostrarMensaje(`¡${cantidad} vehículo(s) comprados con éxito! Estado: COMPRADO`, true);
-        
-        // Redirigir después de 2 segundos
-        setTimeout(() => {
-          this.router.navigate(['/catalogo-mejorado']);
-        }, 2000);
-        
+        this.mostrarMensaje('¡Compra completada con éxito!', true);
+        setTimeout(() => this.router.navigate(['/catalogo-mejorado']), 2000);
       } catch (error) {
-        console.error('Error procesando compra:', error);
+        console.error('Error al procesar la compra:', error);
         this.mostrarMensaje('Error al procesar la compra', false);
       }
     }
@@ -176,13 +181,10 @@ export class CarritoComponent implements OnInit {
       this.http.post('http://localhost:4000/api/compras', {
         usuario_id: this.usuarioId,
         vehiculo_id: auto.id,
-        estado: 'comprado'  // Cambiado a "comprado" en lugar de "entregado"
+        estado: 'comprado'
       }).subscribe({
         next: () => resolve(),
-        error: (error) => {
-          console.error('Error registrando compra:', error);
-          reject(error);
-        }
+        error: (error) => reject(error)
       });
     });
   }
@@ -190,8 +192,6 @@ export class CarritoComponent implements OnInit {
   mostrarMensaje(mensaje: string, exito: boolean) {
     this.mensaje = mensaje;
     this.mensajeExito = exito;
-    setTimeout(() => {
-      this.mensaje = '';
-    }, 4000);
+    setTimeout(() => (this.mensaje = ''), 4000);
   }
 }

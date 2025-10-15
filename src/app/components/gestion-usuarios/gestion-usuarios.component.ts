@@ -20,47 +20,46 @@ interface Usuario {
   standalone: true,
   imports: [CommonModule, FormsModule, DashboardMenuComponent],
   template: `
-    <div class="min-h-screen bg-gradient-to-br from-gray-100 to-gray-50 flex">
+    <div class="min-h-screen bg-white flex">
       <!-- Menú lateral -->
       <div class="w-64 flex-shrink-0">
         <app-dashboard-menu></app-dashboard-menu>
       </div>
 
       <!-- Contenido principal -->
-      <div class="flex-1 p-6 overflow-auto">
+      <div class="flex-1 p-8 overflow-auto bg-gradient-to-b from-white via-gray-50 to-gray-100">
         <div class="max-w-7xl mx-auto">
 
-          <!-- Header con botón -->
-          <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+          <!-- Header -->
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
             <div>
-              <h2 class="text-4xl font-extrabold text-gray-900">Gestión de Usuarios</h2>
-              <p class="text-gray-600 mt-1">Administra todos los usuarios del sistema de manera eficiente</p>
+              <h2 class="text-3xl font-bold text-gray-900 tracking-tight">Gestión de Usuarios</h2>
+              <p class="text-gray-600 text-sm mt-1">Administra los usuarios registrados en el sistema</p>
             </div>
             <button 
               (click)="mostrarFormularioCrear()"
-              class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-5 py-3 rounded-xl shadow-lg font-semibold flex items-center gap-2 transition-transform transform hover:scale-105">
-              <span class="text-xl">➕</span>
+              class="bg-[#003366] hover:bg-[#002244] text-white px-6 py-3 rounded-xl shadow-lg font-semibold transition-transform transform hover:scale-105">
               Nuevo Usuario
             </button>
           </div>
 
-          <!-- Tabla de usuarios -->
-          <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-200">
+          <!-- Tabla -->
+          <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
             <div class="overflow-x-auto">
               <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
+                <thead class="bg-gray-100">
                   <tr>
-                    <th class="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">ID</th>
-                    <th class="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Nombre</th>
-                    <th class="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Email</th>
-                    <th class="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Teléfono</th>
-                    <th class="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Rol</th>
-                    <th class="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Registro</th>
-                    <th class="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Acciones</th>
+                    <th class="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">ID</th>
+                    <th class="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Nombre</th>
+                    <th class="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Email</th>
+                    <th class="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Teléfono</th>
+                    <th class="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Rol</th>
+                    <th class="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Registro</th>
+                    <th class="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Acciones</th>
                   </tr>
                 </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
-                  <tr *ngFor="let usuario of usuarios" class="hover:bg-gray-50 transition-colors duration-200">
+                <tbody class="bg-white divide-y divide-gray-100">
+                  <tr *ngFor="let usuario of usuarios" class="hover:bg-gray-50 transition">
                     <td class="px-6 py-4 text-sm font-medium text-gray-900">{{usuario.id}}</td>
                     <td class="px-6 py-4 text-sm text-gray-900">{{usuario.nombre}}</td>
                     <td class="px-6 py-4 text-sm text-gray-600">{{usuario.email}}</td>
@@ -69,7 +68,7 @@ interface Usuario {
                       <select 
                         [value]="usuario.rol" 
                         (change)="cambiarRol(usuario.id, $event)"
-                        class="border border-gray-300 rounded-lg px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        class="border border-gray-300 rounded-lg px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-[#003366]">
                         <option value="usuario">Usuario</option>
                         <option value="admin">Admin</option>
                       </select>
@@ -78,13 +77,13 @@ interface Usuario {
                     <td class="px-6 py-4 text-sm font-medium flex gap-2">
                       <button 
                         (click)="editarUsuario(usuario)"
-                        class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-lg text-xs shadow-sm transition-all">
-                        ✏️ Editar
+                        class="bg-[#0055A4] hover:bg-[#003E7E] text-white px-4 py-1 rounded-lg text-xs shadow-sm transition">
+                        Editar
                       </button>
                       <button 
                         (click)="eliminarUsuario(usuario.id)"
-                        class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-xs shadow-sm transition-all">
-                        🗑️ Eliminar
+                        class="bg-gray-700 hover:bg-black text-white px-4 py-1 rounded-lg text-xs shadow-sm transition">
+                        Eliminar
                       </button>
                     </td>
                   </tr>
@@ -93,54 +92,54 @@ interface Usuario {
             </div>
           </div>
 
-          <!-- Mensaje cuando no hay usuarios -->
-          <div *ngIf="usuarios.length === 0" class="text-center py-12 bg-white rounded-3xl shadow-lg mt-6">
-            <div class="text-gray-400 text-6xl mb-4">👥</div>
-            <h3 class="text-xl font-semibold text-gray-600 mb-2">No hay usuarios registrados</h3>
-            <p class="text-gray-500">Crea el primer usuario del sistema</p>
+          <!-- Mensaje vacío -->
+          <div *ngIf="usuarios.length === 0" class="text-center py-16 bg-white rounded-2xl shadow-md mt-6 border border-gray-200">
+            <div class="text-gray-400 text-6xl mb-3">👤</div>
+            <h3 class="text-lg font-semibold text-gray-700">No hay usuarios registrados</h3>
+            <p class="text-gray-500 text-sm">Crea el primer usuario en el sistema</p>
           </div>
 
-          <!-- Modal Crear/Editar Usuario -->
+          <!-- Modal -->
           <div *ngIf="mostrarModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-            <div class="bg-white rounded-3xl shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full">
               <div class="p-6">
                 <h3 class="text-xl font-bold text-gray-900 mb-4">{{usuarioEditando ? 'Editar Usuario' : 'Crear Nuevo Usuario'}}</h3>
                 
                 <form (ngSubmit)="guardarUsuario()" class="space-y-4">
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Nombre *</label>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Nombre *</label>
                     <input type="text" [(ngModel)]="usuarioForm.nombre" name="nombre" required
-                          class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                          class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#003366]">
                   </div>
 
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Email *</label>
                     <input type="email" [(ngModel)]="usuarioForm.email" name="email" required
-                          class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                          class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#003366]">
                   </div>
 
                   <div *ngIf="!usuarioEditando">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Contraseña *</label>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Contraseña *</label>
                     <input type="password" [(ngModel)]="usuarioForm.password" name="password" required
-                          class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                          class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#003366]">
                   </div>
 
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Teléfono</label>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Teléfono</label>
                     <input type="tel" [(ngModel)]="usuarioForm.celular" name="celular"
-                          class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                          class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#003366]">
                   </div>
 
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Fecha de Nacimiento</label>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Fecha de Nacimiento</label>
                     <input type="date" [(ngModel)]="usuarioForm.fechaNacimiento" name="fechaNacimiento"
-                          class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                          class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#003366]">
                   </div>
 
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Rol *</label>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Rol *</label>
                     <select [(ngModel)]="usuarioForm.rol" name="rol" required
-                            class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#003366]">
                       <option value="usuario">Usuario</option>
                       <option value="admin">Administrador</option>
                     </select>
@@ -148,11 +147,11 @@ interface Usuario {
 
                   <div class="flex gap-3 pt-4">
                     <button type="button" (click)="cerrarModal()"
-                            class="flex-1 bg-gray-500 hover:bg-gray-600 text-white py-2 rounded-lg font-medium transition-colors">
+                            class="flex-1 bg-gray-700 hover:bg-black text-white py-2 rounded-lg font-medium transition">
                       Cancelar
                     </button>
                     <button type="submit"
-                            class="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg font-medium transition-colors">
+                            class="flex-1 bg-[#003366] hover:bg-[#002244] text-white py-2 rounded-lg font-medium transition">
                       {{usuarioEditando ? 'Actualizar' : 'Crear'}}
                     </button>
                   </div>
@@ -161,9 +160,9 @@ interface Usuario {
             </div>
           </div>
 
-          <!-- Mensajes de alerta -->
-          <div *ngIf="mensaje" class="fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50" 
-              [class]="mensajeExito ? 'bg-green-500 text-white' : 'bg-red-500 text-white'">
+          <!-- Mensajes -->
+          <div *ngIf="mensaje" class="fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50"
+              [class]="mensajeExito ? 'bg-green-600 text-white' : 'bg-red-600 text-white'">
             {{mensaje}}
           </div>
 
@@ -201,7 +200,7 @@ export class GestionUsuariosComponent implements OnInit {
     this.http.get<Usuario[]>('http://localhost:4000/api/usuarios', { headers })
       .subscribe({
         next: (data) => { this.usuarios = data; },
-        error: (error) => { this.mostrarMensaje('Error al cargar los usuarios', false); }
+        error: () => { this.mostrarMensaje('Error al cargar los usuarios', false); }
       });
   }
 

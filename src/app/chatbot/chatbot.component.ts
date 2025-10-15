@@ -9,10 +9,9 @@ import { NgFor, NgClass, NgIf } from '@angular/common';
   templateUrl: './chatbot.component.html'
 })
 export class ChatbotComponent {
-  messages: { text: string, sender: 'Usuario' | 'Bot', options?: {label: string, action: string, carData?: any}[] }[] = [];
+  messages: { text: string, sender: 'Usuario' | 'Bot', options?: { label: string, action: string, carData?: any }[] }[] = [];
   isOpen: boolean = false;
 
-  // 🔹 Base de autos (simulación de dataset)
   autos = [
     {
       Nombre: "AutoLux", Modelo: "GT", Año: 2017, Pais: "Germany",
@@ -53,7 +52,7 @@ export class ChatbotComponent {
   startChat() {
     this.messages.push({
       sender: 'Bot',
-      text: '🚗 Bienvenido a EasyDrive. Selecciona un auto:',
+      text: '🚗 Bienvenido a EasyDrive BMW. Selecciona un modelo para conocer más:',
       options: this.autos.map((auto, i) => ({
         label: `${auto.Nombre} ${auto.Modelo} (${auto.Pais})`,
         action: `auto_${i}`,
@@ -67,7 +66,6 @@ export class ChatbotComponent {
 
     if (opt.action.startsWith("auto_")) {
       const car = opt.carData;
-
       this.messages.push({
         sender: 'Bot',
         text: `📋 ${car.Nombre} ${car.Modelo} (${car.Año}, ${car.Pais})\n⚙️ ${car.Velocidades} Vel., ${car.RPM} RPM, ${car.Combustible}, ${car.Transmision}, ${car.Carroceria}`,
@@ -91,5 +89,20 @@ export class ChatbotComponent {
     if (opt.action === "volver") {
       this.startChat();
     }
+  }
+
+  // 🧠 Enviar mensaje manual del usuario
+  sendMessage() {
+    const input = document.getElementById('userMessage') as HTMLInputElement;
+    const text = input.value.trim();
+    if (!text) return;
+
+    this.messages.push({ sender: 'Usuario', text });
+    input.value = '';
+
+    this.http.post<any>("http://localhost:4000/chat", { message: text })
+      .subscribe(res => {
+        this.messages.push({ sender: 'Bot', text: res.reply });
+      });
   }
 }

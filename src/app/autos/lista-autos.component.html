@@ -1,57 +1,65 @@
-<div class="flex min-h-screen bg-gray-50">
+<div class="flex min-h-screen bg-white">
   <!-- Menú lateral -->
   <app-dashboard-menu class="w-64 bg-white shadow-md"></app-dashboard-menu>
 
   <!-- Contenido principal -->
   <div class="flex-1 p-8">
-    <h2 class="text-3xl font-bold text-gray-800 mb-6">🚗 Lista de Autos</h2>
+    <h2 class="text-3xl font-bold text-[#0066b1] mb-6 border-b-2 border-[#0066b1] pb-2">
+      Lista de Autos
+    </h2>
 
     <!-- Mensaje de error -->
-    <div *ngIf="mensajeError" class="bg-red-100 text-red-800 p-4 rounded mb-6 shadow">
+    <div *ngIf="mensajeError" class="bg-red-100 text-red-700 p-4 rounded-lg mb-6 shadow">
       {{ mensajeError }}
     </div>
 
     <!-- Tabla de autos -->
-    <div *ngIf="autos.length > 0" class="overflow-x-auto rounded-lg shadow">
+    <div *ngIf="autos.length > 0" class="overflow-x-auto rounded-2xl shadow-lg border border-gray-200">
       <table class="min-w-full divide-y divide-gray-200 bg-white">
-        <thead class="bg-gray-800 text-white">
+        <thead class="bg-[#0066b1] text-white">
           <tr>
             <th class="py-3 px-6 text-left text-lg font-semibold">Nombre</th>
             <th class="py-3 px-6 text-left text-lg font-semibold">Modelo</th>
             <th class="py-3 px-6 text-left text-lg font-semibold">Color</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-gray-200">
-          <tr *ngFor="let auto of autosPaginados" class="hover:bg-gray-100 transition">
-            <td class="py-3 px-6 font-medium text-gray-700">{{ auto.Nombre }}</td>
-            <td class="py-3 px-6 text-gray-600">{{ auto.Modelo }}</td>
-            <td class="py-3 px-6 text-gray-600">{{ auto.Color }}</td>
+        <tbody class="divide-y divide-gray-100">
+          <tr *ngFor="let auto of autosPaginados"
+              class="hover:bg-blue-50 transition duration-200">
+            <td class="py-3 px-6 font-medium text-gray-800">{{ auto.Nombre }}</td>
+            <td class="py-3 px-6 text-gray-700">{{ auto.Modelo }}</td>
+            <td class="py-3 px-6 text-gray-700">{{ auto.Color }}</td>
           </tr>
         </tbody>
       </table>
     </div>
 
     <!-- Paginación -->
-    <div class="flex justify-center mt-4 space-x-4">
+    <div class="flex justify-center mt-6 space-x-4">
       <button
         (click)="anteriorPagina()"
         [disabled]="paginaActual === 1"
-        class="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
-      >
+        class="px-5 py-2 rounded-lg font-semibold transition
+               bg-[#0066b1] text-white hover:bg-[#004c80] disabled:opacity-50 disabled:bg-gray-300">
         Anterior
       </button>
-      <span class="py-2">Página {{ paginaActual }} de {{ totalPaginas() }}</span>
+
+      <span class="py-2 text-gray-700 font-medium">
+        Página {{ paginaActual }} de {{ totalPaginas() }}
+      </span>
+
       <button
         (click)="siguientePagina()"
         [disabled]="paginaActual === totalPaginas()"
-        class="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
-      >
+        class="px-5 py-2 rounded-lg font-semibold transition
+               bg-[#0066b1] text-white hover:bg-[#004c80] disabled:opacity-50 disabled:bg-gray-300">
         Siguiente
       </button>
     </div>
 
     <!-- Mensaje si no hay autos -->
-    <div *ngIf="autos.length === 0 && !mensajeError" class="text-gray-500 mt-6 text-lg">
+    <div *ngIf="autos.length === 0 && !mensajeError"
+         class="text-gray-500 mt-8 text-lg text-center">
       No hay autos disponibles por ahora.
     </div>
   </div>
