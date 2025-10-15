@@ -8,6 +8,9 @@ import path from "path";
 import csvParser from "csv-parser";
 import fetch from "node-fetch";
 import { getConnection } from "./db.js";
+import { createServer } from "http";
+import { Server } from "socket.io";
+import mqtt from "mqtt";
 
 const app = express();
 const PORT = 4000;
@@ -15,6 +18,53 @@ const PORT = 4000;
 // ====================== MIDDLEWARES ======================
 app.use(cors());
 app.use(bodyParser.json());
+
+// ====================== MQTT & WEBSOCKET (ESP32) ======================
+// Crear servidor HTTP y Socket.IO
+const httpServer = createServer(app);
+const io = new Server(httpServer, {
+  cors: { origin: "*" } // permitir conexiones desde cualquier origen
+});
+
+// Configuración MQTT
+const MQTT_BROKER = "mqtt://test.mosquitto.org";
+const MQTT_TOPIC = "examen/electronica/digital/alejo";
+
+const mqttClient = mqtt.connect(MQTT_BROKER);
+
+mqttClient.on("connect", () => {
+  console.log("✅ Conectado a MQTT Broker");
+  mqttClient.subscribe(MQTT_TOPIC, (err) => {
+    if (!err) console.log(`🔍 Suscrito al topic MQTT: ${MQTT_TOPIC}`);
+  });
+});
+
+mqttClient.on("message", (topic, message) => {
+  try {
+    const payload = JSON.parse(message.toString());
+    console.log("📡 Datos ESP32 recibidos:", payload);
+
+    // Emitir datos a todos los clientes WebSocket conectados
+    io.emit("datos_iot", {
+      temperatura: payload.temperatura,
+      humedad: payload.humedad,
+      calidad_aire: payload.calidad,
+      device_id: payload.device_id || "ESP32",
+      timestamp: new Date()
+    });
+  } catch (err) {
+    console.error("❌ Error procesando datos MQTT:", err);
+  }
+});
+
+// Manejo de clientes WebSocket
+io.on("connection", (socket) => {
+  console.log("🔌 Cliente WebSocket conectado:", socket.id);
+
+  socket.on("disconnect", () => {
+    console.log("🔌 Cliente WebSocket desconectado:", socket.id);
+  });
+});
 
 // ====================== REGISTRO Y LOGIN ======================
 app.post("/api/register", async (req, res) => {
@@ -651,7 +701,7 @@ app.post("/chat", async (req, res) => {
   }
 });
 
-// ====================== START SERVER ======================
-app.listen(PORT, () => {
-  console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
+// ====================== START SERVER CON HTTP + SOCKET.IO ======================
+httpServer.listen(PORT, () => {
+  console.log(`🚀 Servidor Express + WebSocket corriendo en http://localhost:${PORT}`);
 });

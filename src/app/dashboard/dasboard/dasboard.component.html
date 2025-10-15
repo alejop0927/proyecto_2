@@ -1,4 +1,4 @@
-<div class="flex min-h-screen bg-white text-gray-800">
+<div class="flex min-h-screen bg-gray-50 text-gray-800">
   <!-- Sidebar -->
   <app-dashboard-menu></app-dashboard-menu>
 
@@ -10,39 +10,113 @@
       <h1 class="text-2xl font-extrabold text-gray-900 tracking-wide">
         Dashboard <span class="text-blue-600">EasyDrive</span>
       </h1>
+      <div class="flex items-center gap-4">
+        <!-- Estado IoT -->
+        <div class="flex items-center gap-2 px-3 py-1 rounded-full text-sm"
+             [class]="estaConectado ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'">
+          <div class="w-2 h-2 rounded-full" 
+               [class]="estaConectado ? 'bg-green-500' : 'bg-red-500'"></div>
+          {{ estaConectado ? 'ESP32 Conectado' : 'ESP32 Desconectado' }}
+        </div>
+        <!-- Usuario -->
+        <div class="text-sm text-gray-600" *ngIf="user">
+          Hola, <span class="font-semibold">{{ user.nombre }}</span>
+        </div>
+      </div>
     </header>
 
     <!-- Contenido central -->
-    <main class="flex-1 p-10 bg-gray-50">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <main class="flex-1 p-6">
+      <div class="mb-8">
+        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+          🌡️ Monitoreo Ambiental - Garaje
+          <span class="text-sm font-normal text-gray-500" *ngIf="datosIoT?.timestamp">
+            (Actualizado: {{ datosIoT?.timestamp | date:'HH:mm:ss' }})
+          </span>
+        </h2>
 
-        <!-- Card 1 -->
-        <div class="bg-white rounded-2xl p-6 border border-blue-100 shadow-md hover:shadow-lg transition-all duration-300 hover:border-blue-300">
-          <div class="flex items-center justify-between mb-3">
-            <h2 class="text-lg font-bold text-gray-900 tracking-wide">Usuarios Activos</h2>
-            <i class="fa-solid fa-users text-blue-500 text-2xl"></i>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+
+          <!-- Temperatura -->
+          <div class="bg-white rounded-xl p-4 border-2 shadow-sm transition-all duration-300 hover:shadow-md"
+               [class]="esAdvertencia(datosIoT?.temperatura, 'temp') ? 'border-yellow-400 bg-yellow-50' : 'border-green-200'">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-gray-700">Temperatura</h3>
+              <span class="text-2xl">🌡️</span>
+            </div>
+            <div class="flex items-baseline gap-2">
+              <span class="text-2xl font-bold text-gray-900">
+                {{ datosIoT?.temperatura || '--' }}°C
+              </span>
+              <span class="text-sm" 
+                    [class]="esAdvertencia(datosIoT?.temperatura, 'temp') ? 'text-yellow-600' : 'text-green-600'">
+                {{ esAdvertencia(datosIoT?.temperatura, 'temp') ? '⚠️' : '✅' }}
+              </span>
+            </div>
+            <p class="text-xs text-gray-500 mt-1">Rango: 10°C - 30°C</p>
           </div>
-          <p class="text-gray-500">1,245 registrados este mes.</p>
-        </div>
 
-        <!-- Card 2 -->
-        <div class="bg-white rounded-2xl p-6 border border-blue-100 shadow-md hover:shadow-lg transition-all duration-300 hover:border-blue-300">
-          <div class="flex items-center justify-between mb-3">
-            <h2 class="text-lg font-bold text-gray-900 tracking-wide">Ventas</h2>
-            <i class="fa-solid fa-dollar-sign text-blue-500 text-2xl"></i>
+          <!-- Humedad -->
+          <div class="bg-white rounded-xl p-4 border-2 shadow-sm transition-all duration-300 hover:shadow-md"
+               [class]="esAdvertencia(datosIoT?.humedad, 'hum') ? 'border-yellow-400 bg-yellow-50' : 'border-blue-200'">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-gray-700">Humedad</h3>
+              <span class="text-2xl">💧</span>
+            </div>
+            <div class="flex items-baseline gap-2">
+              <span class="text-2xl font-bold text-gray-900">
+                {{ datosIoT?.humedad || '--' }}%
+              </span>
+              <span class="text-sm" 
+                    [class]="esAdvertencia(datosIoT?.humedad, 'hum') ? 'text-yellow-600' : 'text-blue-600'">
+                {{ esAdvertencia(datosIoT?.humedad, 'hum') ? '⚠️' : '✅' }}
+              </span>
+            </div>
+            <p class="text-xs text-gray-500 mt-1">Rango: 30% - 70%</p>
           </div>
-          <p class="text-gray-500">$58,230 generados en 2025.</p>
-        </div>
 
-        <!-- Card 3 -->
-        <div class="bg-white rounded-2xl p-6 border border-blue-100 shadow-md hover:shadow-lg transition-all duration-300 hover:border-blue-300">
-          <div class="flex items-center justify-between mb-3">
-            <h2 class="text-lg font-bold text-gray-900 tracking-wide">Reportes</h2>
-            <i class="fa-solid fa-file-lines text-blue-500 text-2xl"></i>
+          <!-- Calidad del Aire -->
+          <div class="bg-white rounded-xl p-4 border-2 shadow-sm transition-all duration-300 hover:shadow-md"
+               [class]="esAdvertencia(datosIoT?.calidad_aire, 'calidad') ? 'border-red-400 bg-red-50' : 'border-purple-200'">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-gray-700">Calidad Aire</h3>
+              <span class="text-2xl">🌫️</span>
+            </div>
+            <div class="flex items-baseline gap-2">
+              <span class="text-2xl font-bold text-gray-900">
+                {{ datosIoT?.calidad_aire || '--' }}
+              </span>
+              <span class="text-sm text-red-600" *ngIf="esAdvertencia(datosIoT?.calidad_aire, 'calidad')">
+                ⚠️
+              </span>
+            </div>
+            <div class="mt-1" *ngIf="datosIoT?.calidad_aire != null">
+              <span class="text-xs px-2 py-1 rounded-full" 
+                    [class]="getCalidadAireColor(datosIoT?.calidad_aire)">
+                {{ getCalidadAireTexto(datosIoT?.calidad_aire) }}
+              </span>
+            </div>
+            <p class="text-xs text-gray-500 mt-1">Límite: 2000</p>
           </div>
-          <p class="text-gray-500">Último generado hace 2h.</p>
-        </div>
 
+          <!-- Dispositivo -->
+          <div class="bg-white rounded-xl p-4 border-2 border-gray-200 shadow-sm">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-gray-700">Dispositivo</h3>
+              <span class="text-2xl">🆔</span>
+            </div>
+            <p class="text-lg font-semibold text-gray-900 mb-1">
+              {{ datosIoT?.device_id || 'ESP32' }}
+            </p>
+            <p class="text-xs text-gray-500" *ngIf="!datosIoT">
+              Esperando datos del sensor...
+            </p>
+            <p class="text-xs text-green-600 font-medium" *ngIf="estaConectado && datosIoT">
+              ● Transmisión activa
+            </p>
+          </div>
+
+        </div>
       </div>
     </main>
   </div>
