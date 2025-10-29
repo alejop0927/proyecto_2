@@ -77,7 +77,7 @@ interface AutoFavorito {
 
             <button (click)="eliminarFavorito(auto.id)"
                     class="bg-gray-200 hover:bg-gray-300 text-gray-700 p-2.5 rounded-lg transition">
-              <i class="fas fa-trash-alt"></i>
+              <i class="fas fa-trash-alt">Eliminar</i>
             </button>
           </div>
         </div>
